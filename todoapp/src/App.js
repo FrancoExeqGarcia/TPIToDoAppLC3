@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import SideBar from "./Components/sideBar/SideBar";
 import User from "./Components/user/User";
-import Main from "./Components/main/Main";
 import Projects from "./Components/projects/Projects";
 import AddNewTodo from "./Components/addNewTodo/AddNewTodo";
 import Todos from "./Components/todos/Todos";
@@ -18,11 +17,10 @@ function App() {
       <SideBar>
         <Projects />
         <AddNewTodo />
-      </SideBar>
-      <Main>
-        <Todos />
         <EditTodo />
-      </Main>
+      </SideBar>
+        <Todos />
+        
     </div>
   );
 }
