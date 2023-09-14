@@ -1,0 +1,9 @@
+.navbar {
+  height: 50px; /* Altura de la barra de navegación */
+  background-color: #c4dafa; /* Color de fondo de la barra de navegación, ajusta según sea necesario */
+  position: fixed; /* Para que la barra de navegación se mantenga fija en la parte superior */
+  top: 0; /* Posición en la parte superior */
+  left: 0; /* Posición a la izquierda */
+  width: 100%; /* Ancho del 100% para ocupar toda la pantalla */
+  z-index: 2; /* Asegura que la barra de navegación esté por encima del sidebar */
+}

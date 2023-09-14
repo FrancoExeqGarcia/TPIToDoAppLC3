@@ -1,13 +1,28 @@
 import React from "react";
 import "./App.css";
-import Sidebar from "./componets/sideBar/SideBar";
-import Proyecto1 from "./componets/proyecto1/Proyecto1";
+import SideBar from "./Components/sideBar/SideBar";
+import User from "./Components/user/User";
+import Main from "./Components/main/Main";
+import Projects from "./Components/projects/Projects";
+import AddNewTodo from "./Components/addNewTodo/AddNewTodo";
+import Todos from "./Components/todos/Todos";
+import EditTodo from "./Components/editTodo/EditTodo";
+import NavBar from "./Components/navBar/NavBar";
 
 function App() {
   return (
     <div className="app">
-      <Sidebar />
-      <Proyecto1 />
+      <NavBar>
+        <User />
+      </NavBar>
+      <SideBar>
+        <Projects />
+        <AddNewTodo />
+      </SideBar>
+      <Main>
+        <Todos />
+        <EditTodo />
+      </Main>
     </div>
   );
 }

@@ -1,0 +1,9 @@
+.sidebar {
+  width: 300px; /* Ancho del sidebar */
+  background-color: #c4dafa; /* Color de fondo del sidebar */
+  position: fixed; /* Para que el sidebar se mantenga fijo en la pantalla */
+  top: 50px; /* Deja espacio para la barra de navegación */
+  left: 0;
+  height: 100%;
+  text-align: center;
+}
