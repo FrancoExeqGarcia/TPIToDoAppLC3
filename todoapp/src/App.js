@@ -19,8 +19,7 @@ function App() {
         <AddNewTodo />
         <EditTodo />
       </SideBar>
-        <Todos />
-        
+      <Todos />
     </div>
   );
 }
