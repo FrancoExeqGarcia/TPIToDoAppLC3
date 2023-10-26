@@ -3,10 +3,10 @@ import "./App.css";
 import SideBar from "./Components/sideBar/SideBar";
 import User from "./Components/user/User";
 import Projects from "./Components/projects/Projects";
-import AddNewTodo from "./Components/addNewTodo/AddNewTodo";
 import Todos from "./Components/todos/Todos";
 import EditTodo from "./Components/editTodo/EditTodo";
 import NavBar from "./Components/navBar/NavBar";
+import AddNewProject from "./Components/addNewProject/AddNewProject";
 
 function App() {
   return (
@@ -16,10 +16,10 @@ function App() {
       </NavBar>
       <SideBar>
         <Projects />
-        <AddNewTodo />
         <EditTodo />
       </SideBar>
       <Todos />
+      <AddNewProject />
     </div>
   );
 }
