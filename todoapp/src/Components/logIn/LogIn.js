@@ -1,9 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import "./Login.css";
+import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
+import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
+import { ThemeContext } from "../services/themeContext/theme.context";
 
 const Login = () => {
+  const { theme } = useContext(ThemeContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { handleLogin } = useContext(AuthenticationContext);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -22,26 +28,22 @@ const Login = () => {
   const signInHandler = () => {
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
-      emailRef.current.style.borderColor = "red";
-      emailRef.current.style.outline = "none";
       alert("Email vacío");
       return;
     }
 
     if (password.length === 0) {
       passwordRef.current.focus();
-      passwordRef.current.style.borderColor = "red";
-      passwordRef.current.style.outline = "none";
       alert("Contraseña vacia");
       return;
     }
-    alert(`Su email es: ${email} y su password es: ${password}`);
+    handleLogin(email);
   };
 
   return (
     <div className="login-container">
-      <div className="login-box">
-        <h3>To do App</h3>
+      <div className={`login-box ${theme === "DARK" && "login-box-dark"}`}>
+        <h3>WELCOME TO DO APP</h3>
         <div className="input-container">
           <input
             className="input-control"
@@ -65,6 +67,7 @@ const Login = () => {
         <button onClick={signInHandler} className="signin-button" type="button">
           Iniciar sesión
         </button>
+        <ToggleTheme />
       </div>
     </div>
   );

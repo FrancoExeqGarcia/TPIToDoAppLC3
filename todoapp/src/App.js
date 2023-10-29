@@ -7,10 +7,12 @@ import Todos from "./Components/todos/Todos";
 import EditTodo from "./Components/editTodo/EditTodo";
 import NavBar from "./Components/navBar/NavBar";
 import AddNewProject from "./Components/addNewProject/AddNewProject";
+import Login from "./Components/logIn/LogIn";
 
 function App() {
   return (
     <div className="app">
+      <Login />
       <NavBar>
         <User />
       </NavBar>
