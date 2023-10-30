@@ -8,7 +8,7 @@ const ToggleTheme = () => {
   return (
     <Button
       className="mt-4"
-      onClick={ToggleTheme}
+      onClick={toggleTheme}
       variant={theme === "light" ? "dark" : "light"}
     >
       Cambiar a tema {theme === "light" ? "oscuro" : "claro"}

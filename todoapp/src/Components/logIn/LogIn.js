@@ -43,10 +43,10 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className={`login-box ${theme === "DARK" && "login-box-dark"}`}>
-        <h3>BIENVENIDO A TASK MINDER</h3>
-        <div className="input-container">
+        <h3 className="mb-4">BIENVENIDO A TASK MINDER</h3>
+        <div className="mb-3">
           <input
-            className="input-control"
+            className="form-control"
             placeholder="Email"
             type="email"
             onChange={emailChangeHandler}
@@ -54,9 +54,9 @@ const Login = () => {
             ref={emailRef}
           />
         </div>
-        <div className="input-container">
+        <div className="mb-3">
           <input
-            className="input-control"
+            className="form-control"
             placeholder="Contraseña"
             type="password"
             onChange={passwordChangeHandler}
@@ -64,7 +64,11 @@ const Login = () => {
             ref={passwordRef}
           />
         </div>
-        <button onClick={signInHandler} className="signin-button" type="button">
+        <button
+          onClick={signInHandler}
+          className="btn btn-primary btn-block"
+          type="button"
+        >
           Iniciar sesión
         </button>
         <ToggleTheme />

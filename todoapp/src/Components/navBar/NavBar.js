@@ -1,38 +1,33 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
 
-const NavBar = () => {
+function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a className="nav-link" href="/">
-              Inicio
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/tareas">
-              Tareas
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/contacto">
-              Contacto
-            </a>
-          </li>
-        </ul>
-        <ul className="navbar-nav ml-auto">
-          {" "}
-          {}
-          <li className="nav-item">
-            <a className="nav-link" href="/iniciar-sesion">
-              Iniciar Sesión
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="#home">Task Minder</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <ul className="navbar-nav ml-auto text-right">
+            {" "}
+            {}
+            <li className="nav-item">
+              <Button variant="secondary" href="/iniciar-sesion">
+                Iniciar Sesión
+              </Button>
+            </li>
+            <li className="nav-item">
+              <Button variant="success" href="/registrarse">
+                Registrarse
+              </Button>
+            </li>
+          </ul>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
-};
+}
 
 export default NavBar;
