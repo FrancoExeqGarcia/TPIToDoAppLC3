@@ -1,97 +1,63 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
-const ProjectArray = [
-  {
-    Name: "",
-    People: "",
-    StartDate: new Date(2023, 9, 23),
-    EndDare: new Date(2023, 9, 23),
-  },
-];
-
-const AddNewProject = ({ onSaveProject }) => {
-  const [name, setName] = useState("");
-  const [people, setPeople] = useState("");
+function AddNewProject({ onAddProject }) {
+  const [ProjectName, setProjectName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const changeNameHandler = (event) => {
-    setName(event.target.value);
-  };
-  const changePeopleHandler = (event) => {
-    setPeople(event.target.value);
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const changeStartDateHandler = (event) => {
-    setStartDate(event.target.value);
-  };
-  const changeEndDateHandler = (event) => {
-    setEndDate(event.target.value);
-  };
+    if (ProjectName.trim() === "") {
+      alert("Por favor, ingresa el nombre de la tarea.");
+      return;
+    }
 
-  const addProjectHandler = () => {
     const newProject = {
-      name,
-      people,
+      name: ProjectName,
       startDate,
       endDate,
     };
 
-    onSaveProject(newProject);
-    setName("");
-    setPeople("");
+    onAddProject(newProject);
+
+    setProjectName("");
     setStartDate("");
     setEndDate("");
   };
 
   return (
-    <form className="project-form">
-      <div className="new-project-controls">
-        <div className="new-project-control">
-          <label>Nombre</label>
-          <input
-            onChange={changeNameHandler}
-            type="text"
-            className="input-control"
-            value={name}
-          />
-        </div>
-        <div className="new-project-control">
-          <label>Participantes</label>
-          <input
-            onChange={changePeopleHandler}
-            type="text"
-            className="input-control"
-            value={people}
-          />
-        </div>
-        <div className="new-project-control">
-          <label>Fecha Inicio</label>
-          <input
-            onChange={changeStartDateHandler}
-            type="date"
-            value={startDate}
-            className="input-control"
-          />
-        </div>
-        <div className="new-project-control">
-          <label>Fecha Fin</label>
-          <input
-            onChange={changeEndDateHandler}
-            type="date"
-            value={endDate}
-            className="input-control"
-          />
-        </div>
-      </div>
-      <div className="new-project-actions">
-        <Button>Cancelar</Button>
-        <Button onClick={addProjectHandler}>Agregar Proyecto</Button>
-      </div>
-    </form>
+    <Form onSubmit={handleSubmit} className="mt-4">
+      <Form.Group>
+        <Form.Label>Nombre del Proyecto:</Form.Label>
+        <Form.Control
+          type="text"
+          value={ProjectName}
+          onChange={(e) => setProjectName(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Fecha de Inicio:</Form.Label>
+        <Form.Control
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Fecha de Finalización:</Form.Label>
+        <Form.Control
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Agregar Proyecto
+      </Button>
+    </Form>
   );
-};
+}
 
 export default AddNewProject;
