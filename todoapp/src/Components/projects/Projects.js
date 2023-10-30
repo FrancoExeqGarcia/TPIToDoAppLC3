@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
-import ProjectForm from "../addNewProject/AddNewProject";
+import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "../projectCard/ProjectCard";
 import EditProject from "../editProject/EditProject"; // Importa el nuevo componente EditProject
+import AddNewProject from "../addNewProject/AddNewProject";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
@@ -18,14 +18,13 @@ function Projects() {
     setProjects(updatedProjects);
   };
 
-
   const editProject = (project) => {
     if (!project.isCompleted) {
       setEditingProject(project);
     }
   };
 
-  const saveEditedProject= (editedProject) => {
+  const saveEditedProject = (editedProject) => {
     const updatedProjects = projects.map((project) =>
       project.id === editedProject.id ? editedProject : project
     );
@@ -39,9 +38,9 @@ function Projects() {
 
   return (
     <Container>
-      <h1 className="mt-5">Lista de Tareas</h1>
+      <h1 className="mt-5">Proyectos</h1>
 
-      <ProjectForm onAddproject={addProject} />
+      <AddNewProject onAddProject={addProject} />
 
       <Row className="mt-4">
         {projects.map((project, index) => (
@@ -49,14 +48,14 @@ function Projects() {
             {editingProjects === project ? (
               <EditProject
                 project={project}
-                onUpdateproject={saveEditedProject}
+                onUpdateProject={saveEditedProject}
                 onCancel={cancelEdit}
               />
             ) : (
               <ProjectCard
                 project={project}
-                onDeleteproject={() => deleteProject(index)}
-                onEditproject={editProject}
+                onDeleteProject={() => deleteProject(index)}
+                onEditProject={editProject}
               />
             )}
           </Col>
