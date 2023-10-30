@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const AddNewUser = () => {
   const [user, setUser] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
 
   const handleChange = (e) => {
@@ -15,8 +15,8 @@ const AddNewUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // falta logica para enviar los datos del usuario al servidor
- 
-    console.log('Datos del usuario:', user);
+
+    console.log("Datos del usuario:", user);
   };
   return (
     <div>
@@ -52,11 +52,11 @@ const AddNewUser = () => {
             onChange={handleChange}
           />
         </div>
-        
+
         <button type="submit">Registrarse</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default AddNewUser
+export default AddNewUser;

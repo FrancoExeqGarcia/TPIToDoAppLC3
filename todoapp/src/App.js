@@ -12,10 +12,10 @@ import Login from "./Components/logIn/LogIn";
 function App() {
   return (
     <div className="app">
-      <Login />
       <NavBar>
         <User />
       </NavBar>
+      <Login />
       <SideBar>
         <Projects />
         <EditTodo />
