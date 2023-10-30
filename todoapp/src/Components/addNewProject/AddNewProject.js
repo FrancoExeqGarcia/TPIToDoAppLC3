@@ -1,34 +1,27 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-
 function AddNewProject({ onAddProject }) {
-  // Estados locales para los campos del formulario
   const [ProjectName, setProjectName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  // Manejador de envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Verifica que el nombre de la tarea no esté vacío
     if (ProjectName.trim() === "") {
       alert("Por favor, ingresa el nombre de la tarea.");
       return;
     }
 
-    // Crea un objeto con los datos de la tarea
     const newProject = {
       name: ProjectName,
       startDate,
       endDate,
     };
 
-    // Llama a la función onAddProject pasando la nueva tarea como argumento
     onAddProject(newProject);
 
-    // Limpia los campos del formulario
     setProjectName("");
     setStartDate("");
     setEndDate("");
