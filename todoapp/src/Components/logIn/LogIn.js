@@ -43,7 +43,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className={`login-box ${theme === "DARK" && "login-box-dark"}`}>
-        <h3>WELCOME TO DO APP</h3>
+        <h3>BIENVENIDO A TASK MINDER</h3>
         <div className="input-container">
           <input
             className="input-control"
