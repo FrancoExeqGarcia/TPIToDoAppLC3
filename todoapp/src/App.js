@@ -8,18 +8,22 @@ import EditTodo from "./Components/editTodo/EditTodo";
 import NavBar from "./Components/navBar/NavBar";
 import AddNewProject from "./Components/addNewProject/AddNewProject";
 import Login from "./Components/logIn/LogIn";
+import { useContext } from "react";
+import { ThemeContext } from "./Components/services/themeContext/theme.context";
 
 function App() {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="app">
+    <div /*className={`App ${theme === "DARK" && "dark-theme"}`}*/>
       <NavBar>
         <User />
       </NavBar>
-      <Login />
       <SideBar>
         <Projects />
         <EditTodo />
       </SideBar>
+      <Login />
       <Todos />
       <AddNewProject />
     </div>
