@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App";
 import { AuthenticationContextProvider } from "./Components/services/authenticationContext/authentication.context";
-import { APIContextProvider } from "./Components/services/apiContext/ApiContext";
+import { APIContextProvider } from "./Components/services/apiContext/API.Context";
 import { ThemeContextProvider } from "./Components/services/themeContext/theme.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
