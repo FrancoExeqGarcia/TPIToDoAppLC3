@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button, Form } from "react-bootstrap";
 
-function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsCompleted }) {
+function ProjectCard({ project, onEditProject }) {
   const handleEditClick = () => {
     if (!project.isCompleted) {
       onEditProject(project);
@@ -14,23 +14,13 @@ function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsComplete
         <Card.Title>{project.name}</Card.Title>
         <Card.Text>Fecha de Inicio: {project.startDate}</Card.Text>
         <Card.Text>Fecha de Finalización: {project.endDate}</Card.Text>
-        <Form.Check
-          type="checkbox"
-          label="Completada"
-          checked={project.isCompleted}
-          onChange={() => {
-            onMarkAsCompleted(project.id);
-          }}
-        />
+        <Card.Text>Creado por:{project.ownerName}</Card.Text>
         <Button
           variant="info"
           onClick={handleEditClick}
           disabled={project.isCompleted}
         >
           Editar
-        </Button>
-        <Button variant="danger" onClick={onDeleteProject}>
-          Eliminar
         </Button>
       </Card.Body>
     </Card>

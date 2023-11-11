@@ -62,14 +62,12 @@ function Todos() {
   };
 
   return (
-    <Container>
-      <h1 className="mt-5">Lista de Tareas</h1>
+    <Container className="mt-4">
+      <h1 className="text-center mb-4">Lista de Tareas</h1>
 
-      {/* Pasa la función addTask como prop a TodoForm */}
       <TodoForm onAddTask={addTask} />
 
       <Row className="mt-4">
-        {/* Renderiza cada tarea utilizando TodoCard o EditTodo según corresponda */}
         {tasks.map((task, index) => (
           <Col key={index} xs={12} md={6} lg={4} className="mb-3">
             {editingTask === task ? (
@@ -83,16 +81,15 @@ function Todos() {
                 task={task}
                 onDeleteTask={() => deleteTask(index)}
                 onEditTask={editTask}
-                onMarkAsCompleted={markTaskAsCompleted} // Pasa la función de marca como completada
+                onMarkAsCompleted={markTaskAsCompleted}
               />
             )}
           </Col>
         ))}
       </Row>
 
-      <div className="mt-3">
-        {/* Botón para eliminar tareas completadas */}
-        <Button variant="danger" onClick={deleteCompletedTasks}>
+      <div className="text-center mt-3">
+        <Button variant="outline-danger" onClick={deleteCompletedTasks}>
           Eliminar Completadas
         </Button>
       </div>

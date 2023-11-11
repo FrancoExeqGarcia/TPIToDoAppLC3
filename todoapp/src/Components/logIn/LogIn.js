@@ -1,5 +1,6 @@
 import React, { useRef, useState, useContext } from "react";
 import "./Login.css";
+import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import { ThemeContext } from "../services/themeContext/theme.context";
@@ -13,6 +14,7 @@ const Login = () => {
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const navigate = useNavigate();
 
   const emailChangeHandler = (event) => {
     if (emailRef.current.value.length > 0) {
@@ -28,16 +30,21 @@ const Login = () => {
   const signInHandler = () => {
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
+      passwordRef.current.style.borderColor = "red";
+      passwordRef.current.style.outline = "none";
       alert("Email vacío");
       return;
     }
 
     if (password.length === 0) {
       passwordRef.current.focus();
+      passwordRef.current.style.borderColor = "red";
+      passwordRef.current.style.outline = "none";
       alert("Contraseña vacia");
       return;
     }
     handleLogin(email);
+    navigate("/home");
   };
 
   return (
@@ -69,7 +76,7 @@ const Login = () => {
           className="btn btn-primary btn-block"
           type="button"
         >
-          Iniciar sesión
+          Iniciar sesion
         </button>
         <ToggleTheme />
       </div>

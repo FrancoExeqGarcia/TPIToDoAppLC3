@@ -1,14 +1,15 @@
-import { useContext } from "react";
-import { Button, Col, Row } from "react-bootstrap";
-//import { useNavigate } from "react-router";
+// Dashboard.jsx
+import React, { useContext } from "react";
+import { Button, Col, Container, Navbar, Row } from "react-bootstrap";
+import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
-import { APIContext } from "../services/apiContext/ApiContext";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
+import Todos from "../todos/Todos";
+import Projects from "../projects/Projects";
 
 const Dashboard = () => {
   const { handleLogout, user } = useContext(AuthenticationContext);
-  const { toggleLoading } = useContext(APIContext);
-
+  const navigate = useNavigate();
   const username = user.email.split("@")[0];
 
   const handleLogoutInDashboard = () => {
@@ -17,19 +18,31 @@ const Dashboard = () => {
   };
 
   return (
-    <>
-      <Row>
-        <Col className="d-flex justify-content-center align-items-center">
-          <h4>Hola {username}!</h4>
-        </Col>
-        <Col>
+    <Container fluid>
+      <Navbar bg="light" variant="light" className="d-flex align-items-center">
+        <Navbar.Brand>TASK MINDER</Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text className="mr-4 ms-auto me-auto">
+            Hola {username}!
+          </Navbar.Text>
           <ToggleTheme />
-        </Col>
-        <Col className="d-flex justify-content-end mx-4 py-2">
-          <Button onClick={handleLogoutInDashboard}>Cerrar sesión</Button>
+          <Button
+            variant="outline-primary"
+            className="ml-2 mt-2 mt-md-0"
+            onClick={handleLogoutInDashboard}
+          >
+            Cerrar sesión
+          </Button>
+        </Navbar.Collapse>
+      </Navbar>
+
+      <Row>
+        <Col xs={12} className="text-center mt-4">
+          <Projects />
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 

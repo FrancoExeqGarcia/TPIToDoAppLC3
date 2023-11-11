@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
+import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 
 function AddNewProject({ onAddProject }) {
   const [ProjectName, setProjectName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const { user } = useContext(AuthenticationContext);
+  const owner = user.email.split("@")[0];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +19,7 @@ function AddNewProject({ onAddProject }) {
 
     const newProject = {
       name: ProjectName,
+      ownerName: owner,
       startDate,
       endDate,
     };

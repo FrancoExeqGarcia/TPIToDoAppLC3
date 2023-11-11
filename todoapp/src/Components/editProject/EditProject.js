@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-function EditProject({ project, onUpdateProject, onCancel }) {
+function EditProject({ project, onUpdateProject, onCancel, onDeleteProject }) {
   const [editedName, setEditedName] = useState(project.name);
   const [editedStartDate, setEditedStartDate] = useState(project.startDate);
   const [editedEndDate, setEditedEndDate] = useState(project.endDate);
@@ -45,6 +45,9 @@ function EditProject({ project, onUpdateProject, onCancel }) {
           onChange={(e) => setEditedEndDate(e.target.value)}
         />
       </Form.Group>
+      <Button variant="danger" onClick={onDeleteProject}>
+        Eliminar
+      </Button>
       <Button variant="primary" type="submit">
         Guardar
       </Button>

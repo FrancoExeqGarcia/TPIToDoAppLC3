@@ -5,7 +5,7 @@ import EditProject from "../editProject/EditProject"; // Importa el nuevo compon
 import AddNewProject from "../addNewProject/AddNewProject";
 
 function Projects() {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState([{ tasks: [] }]);
   const [editingProjects, setEditingProject] = useState(null);
 
   const addProject = (newProject) => {
@@ -44,19 +44,16 @@ function Projects() {
 
       <Row className="mt-4">
         {projects.map((project, index) => (
-          <Col key={index} xs={12} md={6} lg={4} className="mb-3">
+          <Col key={index} xs={6} md={6} lg={4} className="mb-3">
             {editingProjects === project ? (
               <EditProject
                 project={project}
                 onUpdateProject={saveEditedProject}
                 onCancel={cancelEdit}
+                onDeleteProject={() => deleteProject(index)}
               />
             ) : (
-              <ProjectCard
-                project={project}
-                onDeleteProject={() => deleteProject(index)}
-                onEditProject={editProject}
-              />
+              <ProjectCard project={project} onEditProject={editProject} />
             )}
           </Col>
         ))}
