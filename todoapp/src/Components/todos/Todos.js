@@ -65,7 +65,10 @@ function Todos() {
     <Container className="mt-4">
       <h1 className="text-center mb-4">Lista de Tareas</h1>
 
-      <TodoForm onAddTask={addTask} />
+      <TodoForm
+        onAddTask={addTask}
+        onDeleteCompletedTask={deleteCompletedTasks}
+      />
 
       <Row className="mt-4">
         {tasks.map((task, index) => (
@@ -87,12 +90,6 @@ function Todos() {
           </Col>
         ))}
       </Row>
-
-      <div className="text-center mt-3">
-        <Button variant="outline-danger" onClick={deleteCompletedTasks}>
-          Eliminar Completadas
-        </Button>
-      </div>
     </Container>
   );
 }

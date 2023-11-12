@@ -21,7 +21,7 @@ function EditProject({ project, onUpdateProject, onCancel, onDeleteProject }) {
 
   return (
     <Form onSubmit={handleSaveChanges}>
-      <Form.Group>
+      <Form.Group className="mb-3">
         <Form.Label>Nombre del Proyecto:</Form.Label>
         <Form.Control
           type="text"
@@ -29,7 +29,7 @@ function EditProject({ project, onUpdateProject, onCancel, onDeleteProject }) {
           onChange={(e) => setEditedName(e.target.value)}
         />
       </Form.Group>
-      <Form.Group>
+      <Form.Group col="{2}">
         <Form.Label>Fecha de Inicio:</Form.Label>
         <Form.Control
           type="date"

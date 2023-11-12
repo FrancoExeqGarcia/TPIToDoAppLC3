@@ -1,11 +1,10 @@
-// En TodoCard.js
 import React from "react";
 import { Card, Button, Form } from "react-bootstrap";
 
 function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
   const handleEditClick = () => {
     if (!task.isCompleted) {
-      onEditTask(task);
+      onEditTask(task, task.project);
     }
   };
 
@@ -19,18 +18,16 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
           type="checkbox"
           label="Completada"
           checked={task.isCompleted}
-          onChange={() => {
-            onMarkAsCompleted(task.id); // Pasamos el ID de la tarea al marcarla como completada
-          }}
+          onChange={() => onMarkAsCompleted(task.id)}
         />
         <Button
           variant="info"
           onClick={handleEditClick}
-          disabled={task.isCompleted} // Deshabilitar el botón de edición si la tarea está completada
+          disabled={task.isCompleted}
         >
           Editar
         </Button>
-        <Button variant="danger" onClick={onDeleteTask}>
+        <Button variant="danger" onClick={() => onDeleteTask(task)}>
           Eliminar
         </Button>
       </Card.Body>

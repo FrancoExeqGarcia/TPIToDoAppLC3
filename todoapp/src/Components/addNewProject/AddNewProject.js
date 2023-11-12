@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Col, Row } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 
 function AddNewProject({ onAddProject }) {
@@ -33,33 +33,49 @@ function AddNewProject({ onAddProject }) {
 
   return (
     <Form onSubmit={handleSubmit} className="mt-4">
-      <Form.Group>
-        <Form.Label>Nombre del Proyecto:</Form.Label>
-        <Form.Control
-          type="text"
-          value={ProjectName}
-          onChange={(e) => setProjectName(e.target.value)}
-        />
+      <Form.Group as={Row}>
+        <Form.Label column sm={4}>
+          Nombre del Proyecto:
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="text"
+            value={ProjectName}
+            onChange={(e) => setProjectName(e.target.value)}
+          />
+        </Col>
       </Form.Group>
-      <Form.Group>
-        <Form.Label>Fecha de Inicio:</Form.Label>
-        <Form.Control
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
+      <Form.Group as={Row}>
+        <Form.Label column sm={4}>
+          Fecha de Inicio:
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </Col>
       </Form.Group>
-      <Form.Group>
-        <Form.Label>Fecha de Finalización:</Form.Label>
-        <Form.Control
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+      <Form.Group as={Row}>
+        <Form.Label column sm={4}>
+          Fecha de Finalización:
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+        </Col>
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Agregar Proyecto
-      </Button>
+      <Form.Group as={Row}>
+        <Col sm={{ span: 8, offset: 4 }}>
+          <Button variant="primary" type="submit" className="mt-3">
+            Agregar Proyecto
+          </Button>
+        </Col>
+      </Form.Group>
     </Form>
   );
 }

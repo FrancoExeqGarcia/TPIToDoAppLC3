@@ -22,6 +22,7 @@ function ProjectCard({ project, onEditProject }) {
         >
           Editar
         </Button>
+        <Button>Elegir</Button>
       </Card.Body>
     </Card>
   );

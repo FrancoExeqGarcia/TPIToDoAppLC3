@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Col, Row } from "react-bootstrap";
 
-function TodoForm({ onAddTask }) {
+function TodoForm({ onAddTask, onDeleteCompletedTask }) {
   // Estados locales para los campos del formulario
   const [taskName, setTaskName] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -36,33 +36,57 @@ function TodoForm({ onAddTask }) {
 
   return (
     <Form onSubmit={handleSubmit} className="mt-4">
-      <Form.Group>
-        <Form.Label className="text-right">Nombre de la Tarea:</Form.Label>
-        <Form.Control
-          type="text"
-          value={taskName}
-          onChange={(e) => setTaskName(e.target.value)}
-        />
+      <Form.Group as={Row}>
+        <Form.Label column sm={4} className="text-right">
+          Nombre de la Tarea:
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="text"
+            value={taskName}
+            onChange={(e) => setTaskName(e.target.value)}
+          />
+        </Col>
       </Form.Group>
-      <Form.Group>
-        <Form.Label className="text-right">Fecha de Inicio:</Form.Label>
-        <Form.Control
-          type="date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
+      <Form.Group as={Row}>
+        <Form.Label column sm={4} className="text-right">
+          Fecha de Inicio:
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+          />
+        </Col>
       </Form.Group>
-      <Form.Group>
-        <Form.Label className="text-right">Fecha de Finalización:</Form.Label>
-        <Form.Control
-          type="date"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+      <Form.Group as={Row}>
+        <Form.Label column sm={4} className="text-right">
+          Fecha de Finalización:
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+          />
+        </Col>
       </Form.Group>
-      <Button variant="primary" type="submit" className="mt-3">
-        Agregar Tarea
-      </Button>
+      <Form.Group as={Row}>
+        <Col sm={{ span: 8, offset: 4 }}>
+          <Button variant="primary" type="submit" className="mt-3">
+            Agregar Tarea
+          </Button>
+          <Button
+            variant="outline-danger"
+            className="mt-3"
+            onClick={onDeleteCompletedTask}
+            type="submit"
+          >
+            Eliminar Completadas
+          </Button>
+        </Col>
+      </Form.Group>
     </Form>
   );
 }

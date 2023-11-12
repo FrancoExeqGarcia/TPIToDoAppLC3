@@ -38,8 +38,11 @@ const Dashboard = () => {
       </Navbar>
 
       <Row>
-        <Col xs={12} className="text-center mt-4">
+        <Col xs={6} className="text-center mt-4">
           <Projects />
+        </Col>
+        <Col xs={6} className="text-center mt-4">
+          <Todos />
         </Col>
       </Row>
     </Container>
