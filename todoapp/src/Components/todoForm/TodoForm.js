@@ -37,7 +37,7 @@ function TodoForm({ onAddTask }) {
   return (
     <Form onSubmit={handleSubmit} className="mt-4">
       <Form.Group>
-        <Form.Label>Nombre de la Tarea:</Form.Label>
+        <Form.Label className="text-right">Nombre de la Tarea:</Form.Label>
         <Form.Control
           type="text"
           value={taskName}
@@ -45,7 +45,7 @@ function TodoForm({ onAddTask }) {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Fecha de Inicio:</Form.Label>
+        <Form.Label className="text-right">Fecha de Inicio:</Form.Label>
         <Form.Control
           type="date"
           value={startDate}
@@ -53,14 +53,14 @@ function TodoForm({ onAddTask }) {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Fecha de Finalización:</Form.Label>
+        <Form.Label className="text-right">Fecha de Finalización:</Form.Label>
         <Form.Control
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" className="mt-3">
         Agregar Tarea
       </Button>
     </Form>
