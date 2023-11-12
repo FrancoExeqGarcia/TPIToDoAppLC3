@@ -5,11 +5,11 @@ import EditProject from "../editProject/EditProject"; // Importa el nuevo compon
 import AddNewProject from "../addNewProject/AddNewProject";
 
 function Projects() {
-  const [projects, setProjects] = useState([{ tasks: [] }]);
+  const [projects, setProjects] = useState([]);
   const [editingProjects, setEditingProject] = useState(null);
 
   const addProject = (newProject) => {
-    setProjects([...projects, newProject]);
+    setProjects([...projects, { ...newProject, tasks: [] }]);
   };
 
   const deleteProject = (index) => {
@@ -38,7 +38,7 @@ function Projects() {
 
   return (
     <Container>
-      <h1 className="mt-5">Proyectos</h1>
+      <h1 className="mt-4">Proyectos</h1>
 
       <AddNewProject onAddProject={addProject} />
 
