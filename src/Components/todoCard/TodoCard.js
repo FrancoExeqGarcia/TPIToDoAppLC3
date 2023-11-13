@@ -3,7 +3,7 @@ import { Card, Button, Form } from "react-bootstrap";
 
 function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
   const handleEditClick = () => {
-    if (!task.isCompleted) {
+    if (!task.completed) {
       onEditTask(task, task.project);
     }
   };
@@ -17,17 +17,17 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
         <Form.Check
           type="checkbox"
           label="Completada"
-          checked={task.isCompleted}
-          onChange={() => onMarkAsCompleted(task.id)}
+          checked={task.completed}
+          onClick={onMarkAsCompleted}
         />
         <Button
           variant="info"
           onClick={handleEditClick}
-          disabled={task.isCompleted}
+          disabled={task.completed}
         >
           Editar
         </Button>
-        <Button variant="danger" onClick={() => onDeleteTask(task)}>
+        <Button variant="danger" onClick={() => onDeleteTask()}>
           Eliminar
         </Button>
       </Card.Body>

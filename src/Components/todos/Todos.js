@@ -22,21 +22,13 @@ function Todos() {
   };
 
   // Función para marcar una tarea como completada
-  const markTaskAsCompleted = (taskId) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId
-        ? {
-            ...task,
-            isCompleted: !task.isCompleted,
-          }
-        : task
-    );
-    setTasks(updatedTasks);
+  const markTaskAsCompleted = (event) => {
+    event.target.checked = !event.target.checked;
   };
 
   // Función para eliminar tareas completadas
   const deleteCompletedTasks = () => {
-    const incompleteTasks = tasks.filter((task) => !task.isCompleted);
+    const incompleteTasks = tasks.filter((task) => !task.completed);
     setTasks(incompleteTasks);
   };
 
