@@ -8,10 +8,10 @@ const ToggleTheme = () => {
   return (
     <Button
       className="ml-2 mt-2 mt-md-0"
+      variant="secondary"
       onClick={toggleTheme}
-      variant={theme === "light" ? "dark" : "light"}
     >
-      Cambiar a tema {theme === "light" ? "oscuro" : "claro"}
+      Tema {theme === "claro" ? "oscuro" : "claro"}
     </Button>
   );
 };
