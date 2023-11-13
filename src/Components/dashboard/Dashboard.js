@@ -37,7 +37,7 @@ const Dashboard = () => {
       </Navbar>
 
       <Row>
-        <Col xs={6} className="text-center mt-4">
+        <Col xs={12} className="text-center mt-4">
           <Todos />
         </Col>
       </Row>

@@ -23,6 +23,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask }) {
       name: taskName,
       startDate,
       endDate,
+      completed: false,
     };
 
     // Llama a la función onAddTask pasando la nueva tarea como argumento
