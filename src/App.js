@@ -45,7 +45,7 @@ function App() {
   ]);
   return (
     <div
-      className={`App ${theme === "DARK" && "dark-theme"} ${
+      className={`App ${theme === "oscuro" && "dark-theme"} ${
         isLoading && "opacity-80"
       }`}
     >
