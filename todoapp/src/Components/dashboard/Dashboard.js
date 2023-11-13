@@ -5,7 +5,6 @@ import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import Todos from "../todos/Todos";
-import Projects from "../projects/Projects";
 
 const Dashboard = () => {
   const { handleLogout, user } = useContext(AuthenticationContext);
@@ -38,9 +37,6 @@ const Dashboard = () => {
       </Navbar>
 
       <Row>
-        <Col xs={6} className="text-center mt-4">
-          <Projects />
-        </Col>
         <Col xs={6} className="text-center mt-4">
           <Todos />
         </Col>
