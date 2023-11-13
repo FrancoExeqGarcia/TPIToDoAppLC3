@@ -9,7 +9,7 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
   };
 
   return (
-    <Card>
+    <Card bg="dark" key="dark" text="light">
       <Card.Body>
         <Card.Title>{task.name}</Card.Title>
         <Card.Text>Fecha de Inicio: {task.startDate}</Card.Text>
