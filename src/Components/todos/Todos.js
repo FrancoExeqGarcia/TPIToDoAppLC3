@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import TodoForm from "../todoForm/TodoForm";
 import TodoCard from "../todoCard/TodoCard";
-import EditTodo from "../editTodo/EditTodo"; // Importa el nuevo componente EditTodo
+import EditTodo from "../editTodo/EditTodo"; 
 import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
@@ -11,52 +11,46 @@ import useTranslation from "../../custom/useTranslation/useTranslation";
 function Todos() {
   const translate = useTranslation()
 
-  // Estado para almacenar la lista de tareas
   const [tasks, setTasks] = useState([]);
-  const [editingTask, setEditingTask] = useState(null); // Estado para rastrear la tarea en edición
+  const [editingTask, setEditingTask] = useState(null); 
 
-  // Función para agregar una nueva tarea a la lista
   const addTask = (newTask) => {
     setTasks([...tasks, newTask]);
   };
 
-  // Función para eliminar una tarea de la lista por su índice
   const deleteTask = (index) => {
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
     setTasks(updatedTasks);
   };
 
-  // Función para marcar una tarea como completada
   const markTaskAsCompleted = (event) => {
     event.target.checked = !event.target.checked;
   };
 
-  // Función para eliminar tareas completadas
   const deleteCompletedTasks = () => {
     const incompleteTasks = tasks.filter((task) => !task.completed);
     setTasks(incompleteTasks);
   };
 
-  // Función para editar una tarea
   const editTask = (task) => {
-    if (!task.isCompleted) {
+    if (!task.completed) {
       setEditingTask(task);
     }
   };
+  
 
-  // Función para guardar los cambios editados de una tarea
   const saveEditedTask = (editedTask) => {
     const updatedTasks = tasks.map((task) =>
       task.id === editedTask.id ? editedTask : task
     );
     setTasks(updatedTasks);
-    setEditingTask(null); // Sale del modo de edición
+    setEditingTask(null); 
   };
+  
 
-  // Función para cancelar la edición de una tarea
   const cancelEdit = () => {
-    setEditingTask(null); // Sale del modo de edición
+    setEditingTask(null); 
   };
 
   return (

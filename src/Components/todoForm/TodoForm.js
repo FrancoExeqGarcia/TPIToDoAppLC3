@@ -1,29 +1,50 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
+import { Form, Button, Col, Row, Alert } from "react-bootstrap";
 
-import { Form, Button, Col, Row } from "react-bootstrap";
-
-function TodoForm({ onAddTask, onDeleteCompletedTask }) {
+function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
   const translate = useTranslation();
-  // Estados locales para los campos del formulario
   const [taskName, setTaskName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // Manejador de envío del formulario
+  useEffect(() => {
+    setTaskName(editedTask ? editedTask.name : "");
+    setStartDate(editedTask ? editedTask.startDate : "");
+    setEndDate(editedTask ? editedTask.endDate : "");
+  }, [editedTask]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Verifica que el nombre de la tarea no esté vacío
     if (taskName.trim() === "") {
-      alert("Por favor, ingresa el nombre de la tarea.");
+      setErrorMessage("Por favor, ingresa el nombre de la tarea.");
       return;
     }
 
-    // Crea un objeto con los datos de la tarea
+    if (!startDate) {
+      setErrorMessage("Por favor, ingresa la fecha de inicio.");
+      return;
+    }
+
+    if (!endDate) {
+      setErrorMessage("Por favor, ingresa la fecha de fin.");
+      return;
+    }
+
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(endDate);
+
+    if (endDateObj < startDateObj) {
+      setErrorMessage(
+        "La fecha de fin no puede ser anterior a la fecha de inicio."
+      );
+      return;
+    }
+
     const newTask = {
       name: taskName,
       startDate,
@@ -31,13 +52,19 @@ function TodoForm({ onAddTask, onDeleteCompletedTask }) {
       completed: false,
     };
 
-    // Llama a la función onAddTask pasando la nueva tarea como argumento
-    onAddTask(newTask);
+    if (editedTask) {
+      
+      onAddTask({ ...editedTask, ...newTask });
+    } else {
+      
+      const taskWithId = { ...newTask, id: Date.now() }; 
+      onAddTask(taskWithId);
+    }
 
-    // Limpia los campos del formulario
     setTaskName("");
     setStartDate("");
     setEndDate("");
+    setErrorMessage("");
   };
 
   return (
@@ -93,6 +120,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask }) {
           </Button>
         </Col>
       </Form.Group>
+      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
     </Form>
   );
 }

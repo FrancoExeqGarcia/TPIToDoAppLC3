@@ -5,25 +5,25 @@ import { TranslateContext } from "../../services/translationContext/translation.
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
+  const translate = useTranslation();
   const handleEditClick = () => {
     if (!task.completed) {
-      onEditTask(task, task.project);
+      onEditTask(task);  
     }
   };
 
-  const translate = useTranslation();
 
   return (
     <Card bg="dark" key="dark" text="light">
       <Card.Body>
         <Card.Title>{task.name}</Card.Title>
-        <Card.Text>{translate("start_date")}{task.startDate}</Card.Text>
-        <Card.Text>{translate("end_date")} {task.endDate}</Card.Text>
+        <Card.Text>{translate("start_date")}: {new Date(task.startDate).toLocaleDateString()}</Card.Text>
+        <Card.Text>{translate("end_date")}: {new Date(task.endDate).toLocaleDateString()}</Card.Text>
         <Form.Check
           type="checkbox"
           label="Completada"
           checked={task.completed}
-          onClick={onMarkAsCompleted}
+          onClick={() => onMarkAsCompleted}
         />
         <Button
           variant="info"
@@ -32,7 +32,7 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
         >
           {translate("edit")}
         </Button>
-        <Button variant="danger" onClick={() => onDeleteTask()}>
+        <Button variant="danger" onClick={() => onDeleteTask(task)}>
         {translate("delete")}
         </Button>
       </Card.Body>
