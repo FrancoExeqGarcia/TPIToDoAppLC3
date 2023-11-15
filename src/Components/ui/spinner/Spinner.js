@@ -1,11 +1,14 @@
-import Spinner from "react-bootstrap/Spinner";
+import ReactSpinner from "react-bootstrap/Spinner";
 
-const Spinner = () => {
+import { TranslateContext } from "../../../services/translationContext/translation.context";
+import useTranslation from "../../../custom/useTranslation/useTranslation";
+
+const CustomSpinner = () => {
   return (
-    <Spinner animation="border" role="status">
+    <ReactSpinner animation="border" role="status">
       <span className="visually-hidden">Loading...</span>
-    </Spinner>
+    </ReactSpinner>
   );
 };
 
-export default Spinner;
+export default CustomSpinner;

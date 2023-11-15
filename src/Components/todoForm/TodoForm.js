@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
+import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
+
 import { Form, Button, Col, Row } from "react-bootstrap";
 
 function TodoForm({ onAddTask, onDeleteCompletedTask }) {
+  const translate = useTranslation();
   // Estados locales para los campos del formulario
   const [taskName, setTaskName] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -39,7 +44,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask }) {
     <Form onSubmit={handleSubmit} className="mt-4">
       <Form.Group as={Row}>
         <Form.Label column sm={4} className="text-right">
-          Nombre de la Tarea:
+          {translate("name_task")}
         </Form.Label>
         <Col sm={8}>
           <Form.Control
@@ -51,7 +56,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask }) {
       </Form.Group>
       <Form.Group as={Row}>
         <Form.Label column sm={4} className="text-right">
-          Fecha de Inicio:
+          {translate("start_date")}
         </Form.Label>
         <Col sm={8}>
           <Form.Control
@@ -63,7 +68,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask }) {
       </Form.Group>
       <Form.Group as={Row}>
         <Form.Label column sm={4} className="text-right">
-          Fecha de Finalización:
+          {translate("end_date")}
         </Form.Label>
         <Col sm={8}>
           <Form.Control
@@ -76,7 +81,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask }) {
       <Form.Group as={Row}>
         <Col sm={{ span: 8, offset: 4 }}>
           <Button variant="primary" type="submit" className="mt-3">
-            Agregar Tarea
+            {translate("add_task")}
           </Button>
           <Button
             variant="outline-danger"
@@ -84,7 +89,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask }) {
             onClick={onDeleteCompletedTask}
             type="submit"
           >
-            Eliminar Completadas
+            {translate("delete_completed")}
           </Button>
         </Col>
       </Form.Group>

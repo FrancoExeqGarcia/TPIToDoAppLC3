@@ -6,14 +6,17 @@ import App from "./App";
 import { AuthenticationContextProvider } from "./Components/services/authenticationContext/authentication.context";
 import { APIContextProvider } from "./Components/services/apiContext/API.Context";
 import { ThemeContextProvider } from "./Components/services/themeContext/theme.context";
+import { TranslateContextProvider } from "./services/translationContext/translation.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <APIContextProvider>
-    <ThemeContextProvider>
-      <AuthenticationContextProvider>
-        <App />
-      </AuthenticationContextProvider>
-    </ThemeContextProvider>
+    <TranslateContextProvider>
+      <ThemeContextProvider>
+        <AuthenticationContextProvider>
+          <App />
+        </AuthenticationContextProvider>
+      </ThemeContextProvider>
+    </TranslateContextProvider>
   </APIContextProvider>
 );

@@ -3,7 +3,13 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 
+
+import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
+
 function NavBar() {
+  const translate = useTranslation();
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -15,12 +21,12 @@ function NavBar() {
             {}
             <li className="nav-item">
               <Button variant="secondary" href="/iniciar-sesion">
-                Iniciar Sesión
+              {translate("login")}
               </Button>
             </li>
             <li className="nav-item">
               <Button variant="success" href="/registrarse">
-                Registrarse
+              {translate("register")}
               </Button>
             </li>
           </ul>

@@ -4,6 +4,9 @@ import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import { ThemeContext } from "../services/themeContext/theme.context";
+import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
 
 const Login = () => {
   const { theme } = useContext(ThemeContext);
@@ -15,6 +18,8 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
+
+  const translate = useTranslation();
 
   const emailChangeHandler = (event) => {
     if (emailRef.current.value.length > 0) {
@@ -50,11 +55,12 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className={`login-box ${theme === "DARK" && "login-box-dark"}`}>
-        <h3 className="mb-4">BIENVENIDO A TASK MINDER</h3>
+        <ComboLanguage />
+        <h3 className="mb-4">{translate("welcome")}</h3>
         <div className="mb-3">
           <input
             className="form-control"
-            placeholder="Email"
+            placeholder={translate("email")}
             type="email"
             onChange={emailChangeHandler}
             value={email}
@@ -64,7 +70,7 @@ const Login = () => {
         <div className="mb-3">
           <input
             className="form-control"
-            placeholder="Contraseña"
+            placeholder={translate("password")}
             type="password"
             onChange={passwordChangeHandler}
             value={password}
@@ -76,7 +82,7 @@ const Login = () => {
           className="btn btn-primary btn-block"
           type="button"
         >
-          Iniciar sesion
+          {translate("login")}
         </button>
         <ToggleTheme />
       </div>

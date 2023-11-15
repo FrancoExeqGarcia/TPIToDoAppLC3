@@ -5,10 +5,15 @@ import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import Todos from "../todos/Todos";
+import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
 
 const Dashboard = () => {
   const { handleLogout, user } = useContext(AuthenticationContext);
   const navigate = useNavigate();
+  const translate = useTranslation();
+
   const username = user.email.split("@")[0];
 
   const handleLogoutInDashboard = () => {
@@ -23,7 +28,7 @@ const Dashboard = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text className="mr-4 ms-auto me-auto">
-            Hola {username}!
+          {translate("hi")} {username}!
           </Navbar.Text>
           <ToggleTheme />
           <Button
@@ -31,11 +36,12 @@ const Dashboard = () => {
             className="ml-2 mt-2 mt-md-0"
             onClick={handleLogoutInDashboard}
           >
-            Cerrar sesión
+            {translate("sign_off")} 
           </Button>
         </Navbar.Collapse>
       </Navbar>
 
+      <ComboLanguage />
       <Row>
         <Col xs={12} className="text-center mt-4">
           <Todos />

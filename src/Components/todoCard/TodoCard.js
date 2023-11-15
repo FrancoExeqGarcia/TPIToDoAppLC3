@@ -1,6 +1,9 @@
 import React from "react";
 import { Card, Button, Form } from "react-bootstrap";
 
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
+
 function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
   const handleEditClick = () => {
     if (!task.completed) {
@@ -8,12 +11,14 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
     }
   };
 
+  const translate = useTranslation();
+
   return (
     <Card bg="dark" key="dark" text="light">
       <Card.Body>
         <Card.Title>{task.name}</Card.Title>
-        <Card.Text>Fecha de Inicio: {task.startDate}</Card.Text>
-        <Card.Text>Fecha de Finalización: {task.endDate}</Card.Text>
+        <Card.Text>{translate("start_date")}{task.startDate}</Card.Text>
+        <Card.Text>{translate("end_date")} {task.endDate}</Card.Text>
         <Form.Check
           type="checkbox"
           label="Completada"
@@ -25,10 +30,10 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
           onClick={handleEditClick}
           disabled={task.completed}
         >
-          Editar
+          {translate("edit")}
         </Button>
         <Button variant="danger" onClick={() => onDeleteTask()}>
-          Eliminar
+        {translate("delete")}
         </Button>
       </Card.Body>
     </Card>

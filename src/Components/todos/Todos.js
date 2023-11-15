@@ -3,8 +3,14 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import TodoForm from "../todoForm/TodoForm";
 import TodoCard from "../todoCard/TodoCard";
 import EditTodo from "../editTodo/EditTodo"; // Importa el nuevo componente EditTodo
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
+
+
 
 function Todos() {
+  const translate = useTranslation()
+
   // Estado para almacenar la lista de tareas
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null); // Estado para rastrear la tarea en edición
@@ -55,7 +61,7 @@ function Todos() {
 
   return (
     <Container className="mt-4">
-      <h1 className="text-center mb-4">Lista de Tareas</h1>
+      <h1 className="text-center mb-4">{translate("list")}</h1>
 
       <TodoForm
         onAddTask={addTask}
