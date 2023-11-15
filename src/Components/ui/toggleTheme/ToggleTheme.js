@@ -3,9 +3,8 @@ import { Button } from "react-bootstrap";
 import { ThemeContext } from "../../services/themeContext/theme.context";
 import useTranslation from "../../../custom/useTranslation/useTranslation";
 
-
 const ToggleTheme = () => {
-const translate = useTranslation();
+  const translate = useTranslation();
 
   const { theme, toggleTheme } = useContext(ThemeContext);
 
@@ -15,7 +14,9 @@ const translate = useTranslation();
       variant="secondary"
       onClick={toggleTheme}
     >
-      {translate(theme === "DARK" ? "light_theme_change" : "dark_theme_change")}
+      {translate(
+        theme === "oscuro" ? "light_theme_change" : "dark_theme_change"
+      )}
     </Button>
   );
 };
