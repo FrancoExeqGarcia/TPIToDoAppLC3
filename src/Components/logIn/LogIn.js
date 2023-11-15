@@ -3,13 +3,13 @@ import "./Login.css";
 import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
-import { ThemeContext } from "../services/themeContext/theme.context";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 import { TranslateContext } from "../../services/translationContext/translation.context";
+import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 const Login = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext); // Usa ThemeContext para obtener el tema
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,8 +18,13 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const navigate = useNavigate();
-
+  
   const translate = useTranslation();
+
+  const customAlert = (messageKey) => {
+    const translatedMessage = translate(messageKey);
+    window.alert(translatedMessage);
+  };
 
   const emailChangeHandler = (event) => {
     if (emailRef.current.value.length > 0) {
@@ -32,12 +37,13 @@ const Login = () => {
   const passwordChangeHandler = (event) => {
     setPassword(event.target.value);
   };
+
   const signInHandler = () => {
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";
-      alert("Email vacío");
+      customAlert("emptyEmail");
       return;
     }
 
@@ -45,7 +51,7 @@ const Login = () => {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";
-      alert("Contraseña vacia");
+      customAlert("emptyPassword");
       return;
     }
     handleLogin(email);
@@ -84,6 +90,7 @@ const Login = () => {
         >
           {translate("login")}
         </button>
+        <br/>
         <ToggleTheme />
       </div>
     </div>

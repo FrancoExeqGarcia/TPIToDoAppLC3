@@ -47,6 +47,10 @@ export const dictionary_translations = {
       {key: "return", value:"Volver a iniciar sesion" },
       { key: "add_task", value:"Agregar tarea"},
       { key: "delete_completed", value:"Eliminar completadas"},
+      { key: "emptyEmail", value:"Email vacío"},
+      { key: "emptyPassword", value:"Contraseña vacía"},
+      { key: "acceptButton", value:"Aceptar"},
+      
     ],
     en: [
       { key: "login", value: "Login" },
@@ -95,6 +99,9 @@ export const dictionary_translations = {
       {key: "return", value:"Return to log" },
       { key: "add_task", value:"Add task"},
       { key: "delete_completed", value:"Delete completed"},
+      { key: "emptyEmail", value:"Empty Email"},
+      { key: "emptyPassword", value:"Empty Password"},
+      { key: "acceptButton", value:"Accept"}
     ],
   };
   
