@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './EditUser.css'; 
 
+import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
+
 const EditUser = () => {
   const [editField, setEditField] = useState(null);
 

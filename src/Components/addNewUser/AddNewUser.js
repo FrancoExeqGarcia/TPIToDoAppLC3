@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
+
 const AddNewUser = () => {
   const [user, setUser] = useState({
     username: "",

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
+
+import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import useTranslation from "../../custom/useTranslation/useTranslation";
+
 function EditTodo({ task, onUpdateTask, onCancel }) {
+  const translate = useTranslation();
   // Estados locales para los campos editables
   const [editedName, setEditedName] = useState(task.name);
   const [editedStartDate, setEditedStartDate] = useState(task.startDate);
@@ -26,7 +32,7 @@ function EditTodo({ task, onUpdateTask, onCancel }) {
   return (
     <Form onSubmit={handleSaveChanges}>
       <Form.Group>
-        <Form.Label>Nombre de la Tarea:</Form.Label>
+        <Form.Label>{translate("name_task")}</Form.Label>
         <Form.Control
           type="text"
           value={editedName}
@@ -34,7 +40,7 @@ function EditTodo({ task, onUpdateTask, onCancel }) {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Fecha de Inicio:</Form.Label>
+        <Form.Label>{translate("start_date")}</Form.Label>
         <Form.Control
           type="date"
           value={editedStartDate}
@@ -42,7 +48,7 @@ function EditTodo({ task, onUpdateTask, onCancel }) {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Fecha de Finalización:</Form.Label>
+        <Form.Label>{translate("end_date")}</Form.Label>
         <Form.Control
           type="date"
           value={editedEndDate}
@@ -50,10 +56,10 @@ function EditTodo({ task, onUpdateTask, onCancel }) {
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Guardar
+      {translate("save_changes")}
       </Button>
       <Button variant="secondary" onClick={onCancel}>
-        Cancelar
+      {translate("cancel")}
       </Button>
     </Form>
   );
