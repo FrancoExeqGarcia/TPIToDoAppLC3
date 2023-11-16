@@ -5,11 +5,11 @@ import { AuthenticationContext } from "../services/authenticationContext/authent
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 import { TranslateContext } from "../../services/translationContext/translation.context";
-import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
+import { ThemeContext } from "../services/themeContext/theme.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 const Login = ({ onLoggedIn }) => {
-  const { theme } = useContext(ThemeContext); // Usa ThemeContext para obtener el tema
+  const { theme } = useContext(ThemeContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,7 +19,7 @@ const Login = ({ onLoggedIn }) => {
   const passwordRef = useRef(null);
 
   const navigate = useNavigate();
-  
+
   const translate = useTranslation();
 
   const customAlert = (messageKey) => {
@@ -102,7 +102,7 @@ const Login = ({ onLoggedIn }) => {
         >
           {translate("register_new_user")}
         </button>
-        <br/>
+        <br />
 
         <ToggleTheme />
       </div>
