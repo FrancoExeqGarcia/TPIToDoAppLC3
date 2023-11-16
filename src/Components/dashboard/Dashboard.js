@@ -6,7 +6,7 @@ import { AuthenticationContext } from "../services/authenticationContext/authent
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import Todos from "../todos/Todos";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
-import { TranslateContext } from "../../services/translationContext/translation.context";
+//import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 const Dashboard = () => {
@@ -28,7 +28,7 @@ const Dashboard = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text className="mr-4 ms-auto me-auto">
-          {translate("hi")} {username}!
+            {translate("hi")} {username}!
           </Navbar.Text>
           <ToggleTheme />
           <Button
@@ -36,7 +36,7 @@ const Dashboard = () => {
             className="ml-2 mt-2 mt-md-0"
             onClick={handleLogoutInDashboard}
           >
-            {translate("sign_off")} 
+            {translate("sign_off")}
           </Button>
         </Navbar.Collapse>
       </Navbar>
