@@ -50,6 +50,9 @@ export const dictionary_translations = {
       { key: "emptyEmail", value:"Email vacío"},
       { key: "emptyPassword", value:"Contraseña vacía"},
       { key: "acceptButton", value:"Aceptar"},
+      { key: "username", value:"Nombre de usuario"},
+      { key: "email", value:"Correo electrónico"},
+      { key: "register_new_user", value:"No tienes una cuenta?"}
       
     ],
     en: [
@@ -101,7 +104,10 @@ export const dictionary_translations = {
       { key: "delete_completed", value:"Delete completed"},
       { key: "emptyEmail", value:"Empty Email"},
       { key: "emptyPassword", value:"Empty Password"},
-      { key: "acceptButton", value:"Accept"}
+      { key: "acceptButton", value:"Accept"},
+      { key: "username", value:"Username"},
+      { key: "email", value:"Email"},
+      { key: "register_new_user", value:"You do not have an account?"}
     ],
   };
   
