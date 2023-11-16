@@ -24,8 +24,12 @@ function Todos() {
     setTasks(updatedTasks);
   };
 
-  const markTaskAsCompleted = (event) => {
-    event.target.checked = !event.target.checked;
+  const markTaskAsCompleted = (task) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((t) =>
+        t.id === task.id ? { ...t, completed: !t.completed } : t
+      )
+    );
   };
 
   const deleteCompletedTasks = () => {
