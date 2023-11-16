@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Card, Button, Form } from "react-bootstrap";
 
@@ -22,8 +23,7 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
         <Form.Check
           type="checkbox"
           label="Completada"
-          checked={task.completed}
-          onClick={() => onMarkAsCompleted}
+          onClick={() => onMarkAsCompleted(task)}
         />
         <Button
           variant="info"
