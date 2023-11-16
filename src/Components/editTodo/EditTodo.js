@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
-
-
+import { Form, Button, Alert } from "react-bootstrap";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 function EditTodo({ task, onUpdateTask, onCancel }) {
   const translate = useTranslation();
-  // Estados locales para los campos editables
   const [editedName, setEditedName] = useState(task.name);
   const [editedStartDate, setEditedStartDate] = useState(task.startDate);
   const [editedEndDate, setEditedEndDate] = useState(task.endDate);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // Función para guardar los cambios editados
-  const handleSaveChanges = () => {
+  const handleSaveChanges = (e) => {
+    e.preventDefault();
+
+    // Validar que el nombre no esté vacío antes de guardar los cambios
+    if (editedName.trim() === "") {
+      setErrorMessage("El nombre de la tarea no puede estar vacío.");
+      return;
+    }
+
     const updatedTask = {
       ...task,
       name: editedName,
@@ -56,11 +61,12 @@ function EditTodo({ task, onUpdateTask, onCancel }) {
         />
       </Form.Group>
       <Button variant="primary" type="submit">
-      {translate("save_changes")}
+        {translate("save_changes")}
       </Button>
       <Button variant="secondary" onClick={onCancel}>
-      {translate("cancel")}
+        {translate("cancel")}
       </Button>
+      {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
     </Form>
   );
 }

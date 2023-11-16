@@ -7,12 +7,17 @@ import useTranslation from "../../custom/useTranslation/useTranslation";
 
 function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
   const translate = useTranslation();
+
   const handleEditClick = () => {
     if (!task.completed) {
-      onEditTask(task);  
+      if (task.name.trim() === "") {
+        alert("El nombre de la tarea no puede estar vacío.");
+        return;
+      }
+
+      onEditTask(task);
     }
   };
-
 
   return (
     <Card bg="dark" key="dark" text="light">
@@ -33,7 +38,7 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
           {translate("edit")}
         </Button>
         <Button variant="danger" onClick={() => onDeleteTask(task)}>
-        {translate("delete")}
+          {translate("delete")}
         </Button>
       </Card.Body>
     </Card>
