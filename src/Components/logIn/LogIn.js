@@ -8,7 +8,7 @@ import { TranslateContext } from "../../services/translationContext/translation.
 import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
-const Login = () => {
+const Login = ({ onLoggedIn }) => {
   const { theme } = useContext(ThemeContext); // Usa ThemeContext para obtener el tema
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +17,7 @@ const Login = () => {
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
   const navigate = useNavigate();
   
   const translate = useTranslation();
@@ -54,6 +55,7 @@ const Login = () => {
       customAlert("emptyPassword");
       return;
     }
+    onLoggedIn();
     handleLogin(email);
     navigate("/home");
   };
