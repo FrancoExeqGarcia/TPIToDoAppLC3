@@ -57,6 +57,9 @@ const Login = () => {
     handleLogin(email);
     navigate("/home");
   };
+  const navigateToAddNewUser = () => {
+    navigate("/add-new-user");
+  };
 
   return (
     <div className="login-container">
@@ -90,7 +93,15 @@ const Login = () => {
         >
           {translate("login")}
         </button>
+        <button
+          onClick={navigateToAddNewUser} // por si creamos usuarios
+          className="btn btn-secondary btn-block mt-3"
+          type="button"
+        >
+          {translate("register_new_user")}
+        </button>
         <br/>
+
         <ToggleTheme />
       </div>
     </div>

@@ -5,6 +5,7 @@ import { TranslateContext } from "../../services/translationContext/translation.
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 const AddNewUser = () => {
+  const translate = useTranslation();
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -27,7 +28,7 @@ const AddNewUser = () => {
       <h2>Registro de Usuario</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Nombre de Usuario:</label>
+          <label htmlFor="username">{translate("username")}Nombre de Usuario:</label>
           <input
             type="text"
             id="username"
@@ -37,7 +38,7 @@ const AddNewUser = () => {
           />
         </div>
         <div>
-          <label htmlFor="email">Correo Electrónico:</label>
+          <label htmlFor="email">{translate("email")}Correo Electrónico:</label>
           <input
             type="email"
             id="email"
@@ -47,7 +48,7 @@ const AddNewUser = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">Contraseña:</label>
+          <label htmlFor="password">{translate("password")}Contraseña:</label>
           <input
             type="password"
             id="password"
