@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
@@ -7,11 +7,15 @@ import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 import { TranslateContext } from "../../services/translationContext/translation.context";
 import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
 import useTranslation from "../../custom/useTranslation/useTranslation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Login = ({ onLoggedIn }) => {
+const Login = () => {
   const { theme } = useContext(ThemeContext); // Usa ThemeContext para obtener el tema
+  const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userRole, setUserRole] = useState("user");
 
   const { handleLogin } = useContext(AuthenticationContext);
 
@@ -19,8 +23,20 @@ const Login = ({ onLoggedIn }) => {
   const passwordRef = useRef(null);
 
   const navigate = useNavigate();
-  
   const translate = useTranslation();
+
+  useEffect(() => {
+    fetch("https://task-minder.onrender.com/users", {
+      headers: {
+        accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((usersData) => {
+        setUsers(usersData);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const customAlert = (messageKey) => {
     const translatedMessage = translate(messageKey);
@@ -44,7 +60,7 @@ const Login = ({ onLoggedIn }) => {
       emailRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";
-      customAlert("emptyEmail");
+      toast.warning(translate("complete_all_fields"));
       return;
     }
 
@@ -52,15 +68,35 @@ const Login = ({ onLoggedIn }) => {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";
-      customAlert("emptyPassword");
+      toast.warning(translate("complete_all_fields"));
       return;
     }
-    onLoggedIn();
+    if (email === "" || password === "") {
+      toast.warning(translate("complete_all_fields"));
+      return;
+    }
+
+    const user = users.find((user) => user.email === email);
+
+    const passwordUsers = users.find((user) => user.password === password);
+
+    if (!user) {
+      toast.warning(translate("wrong_email"));
+      return;
+      // } else {
+      //   users.map((state) =>
+      //     state.email === email ? setUserRole(state.role) : setUserRole("user")
+      //   );
+      //   localStorage.setItem("userRole", JSON.stringify(userRole));
+    }
+
+    if (!passwordUsers) {
+      toast.warning(translate("wrong_password"));
+      return;
+    }
+
     handleLogin(email);
     navigate("/home");
-  };
-  const navigateToAddNewUser = () => {
-    navigate("/add-new-user");
   };
 
   return (
@@ -95,17 +131,22 @@ const Login = ({ onLoggedIn }) => {
         >
           {translate("login")}
         </button>
-        <button
-          onClick={navigateToAddNewUser} // por si creamos usuarios
-          className="btn btn-secondary btn-block mt-3"
-          type="button"
-        >
-          {translate("register_new_user")}
-        </button>
-        <br/>
-
+        <br />
         <ToggleTheme />
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        progressStyle={{ background: "blue" }}
+      />
     </div>
   );
 };
