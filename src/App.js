@@ -10,7 +10,7 @@ import Dashboard from "./Components/dashboard/Dashboard";
 import Protected from "./Components/security/protected/Protected";
 import PageNotFound from "./Components/security/pageNotFound/PageNotFound";
 import { ThemeContext } from "./Components/services/themeContext/theme.context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
   APIContext,
   APIContextProvider,
@@ -18,8 +18,18 @@ import {
 import { Spinner } from "react-bootstrap";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { theme } = useContext(ThemeContext);
   const { isLoading } = useContext(APIContext);
+
+  const loginHandler = () => {
+    setIsLoggedIn(true);
+  };
+
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
+
+  };
 
   const router = createBrowserRouter([
     {
@@ -28,13 +38,13 @@ function App() {
     },
     {
       path: "/login",
-      element: <Login />,
+      element: <Login onLoggedIn={loginHandler}/>,
     },
     {
       path: "/home",
       element: (
-        <Protected>
-          <Dashboard />
+         <Protected isSignedIn={isLoggedIn}>
+          <Dashboard onLogout={logoutHandler} />
         </Protected>
       ),
     },
