@@ -1,3 +1,4 @@
+// Dashboard.jsx
 import React, { useContext } from "react";
 import { Button, Col, Container, Navbar, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
@@ -5,6 +6,7 @@ import { AuthenticationContext } from "../services/authenticationContext/authent
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import Todos from "../todos/Todos";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
+//import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 const Dashboard = () => {
@@ -29,7 +31,6 @@ const Dashboard = () => {
             {translate("hi")} {username}!
           </Navbar.Text>
           <ToggleTheme />
-
           <Button
             variant="outline-primary"
             className="ml-2 mt-2 mt-md-0"
