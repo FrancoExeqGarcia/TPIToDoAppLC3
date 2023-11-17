@@ -53,11 +53,9 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
     };
 
     if (editedTask) {
-      
       onAddTask({ ...editedTask, ...newTask });
     } else {
-      
-      const taskWithId = { ...newTask, id: Date.now() }; 
+      const taskWithId = { ...newTask, id: Date.now() };
       onAddTask(taskWithId);
     }
 
@@ -68,7 +66,11 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mt-4">
+    <Form
+      onSubmit={handleSubmit}
+      className="text-right"
+      style={{ marginTop: "2px" }}
+    >
       <Form.Group as={Row}>
         <Form.Label column sm={4} className="text-right">
           {translate("name_task")}
@@ -106,13 +108,18 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
         </Col>
       </Form.Group>
       <Form.Group as={Row}>
-        <Col sm={{ span: 8, offset: 4 }}>
-          <Button variant="primary" type="submit" className="mt-3">
+        <Col sm={{ span: 6, offset: 3 }}>
+          <Button
+            variant="primary"
+            type="submit"
+            className="mt-4"
+            style={{ marginRight: "8px" }}
+          >
             {translate("add_task")}
           </Button>
           <Button
             variant="outline-danger"
-            className="mt-3"
+            className="mt-4"
             onClick={onDeleteCompletedTask}
             type="submit"
           >
