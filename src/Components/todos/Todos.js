@@ -12,7 +12,6 @@ function Todos() {
 
   const [tasks, setTasksState] = useState([]);
   const [editingTask, setEditingTask] = useState(null); 
-  const [filteredTasks,setFilteredTasks]=useState()
   
   const setTasks = (newTasks) => {
     setTasksState(newTasks);
@@ -29,7 +28,7 @@ function Todos() {
       setTasks(JSON.parse(storedTasks));
     }
   }, []);
-  
+
   const addTask = (newTask) => {
     setTasks([...tasks, newTask]);
   };
