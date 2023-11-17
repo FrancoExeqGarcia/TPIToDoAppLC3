@@ -8,6 +8,7 @@ import Todos from "../todos/Todos";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 //import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
+import UserManagement from "../UserManagement/UserManagement";
 
 const Dashboard = () => {
   const { handleLogout, user } = useContext(AuthenticationContext);
@@ -40,8 +41,10 @@ const Dashboard = () => {
           </Button>
         </Navbar.Collapse>
       </Navbar>
+      
 
       <ComboLanguage />
+      <UserManagement />
       <Row>
         <Col xs={12} className="text-center mt-4">
           <Todos />

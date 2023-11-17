@@ -6,11 +6,11 @@ const UserManagement = () => {
 
   const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState({
-    username: "",
     email: "",
     password: "",
   });
   const [editingUser, setEditingUser] = useState(null);
+  const [selectedRole, setSelectedRole] = useState(""); // Nuevo estado para el rol seleccionado
 
   useEffect(() => {
     getUsers();
@@ -18,8 +18,7 @@ const UserManagement = () => {
 
   const getUsers = async () => {
     try {
-      //https://task-minder.onrender.com/users  link de usuarios
-      const response = await fetch("/api/users");
+      const response = await fetch("https://task-minder.onrender.com/users");
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -32,20 +31,25 @@ const UserManagement = () => {
     setNewUser({ ...newUser, [name]: value });
   };
 
+  const handleRoleChange = (e) => {
+    setSelectedRole(e.target.value);
+  };
+
   const handleAddUser = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/users", {
+      const response = await fetch("https://task-minder.onrender.com/users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify({ ...newUser, role: selectedRole }), // Enviar el rol seleccionado junto con el usuario
       });
       const data = await response.json();
       setUsers([...users, data]);
-      setNewUser({ username: "", email: "", password: "" });
+      setNewUser({ email: "", password: "" });
+      setSelectedRole(""); // Resetear el rol seleccionado después de agregar el usuario
     } catch (error) {
       console.error("Error al agregar usuario:", error);
     }
@@ -91,16 +95,16 @@ const UserManagement = () => {
   };
 
   return (
-    <div>
+    <div className="container mt-4">
       <h2>{translate("administer_users")}</h2>
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-            {user.username} - {user.email}{" "}
-            <button onClick={() => handleEditClick(user)}>
+            {user.email}{" "}
+            <button className="btn btn-sm btn-primary me-2" onClick={() => handleEditClick(user)}>
               {translate("edit")}
             </button>{" "}
-            <button onClick={() => handleDeleteUser(user.id)}>
+            <button className="btn btn-sm btn-danger" onClick={() => handleDeleteUser(user.id)}>
               {translate("delete")}
             </button>
           </li>
@@ -108,75 +112,46 @@ const UserManagement = () => {
       </ul>
       <h3>{translate("create_admin")}</h3>
       <form onSubmit={handleAddUser}>
-        <div>
-          <label htmlFor="username">{translate("username")}</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={newUser.username}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">{translate("email")}</label>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">{translate("email")}</label>
           <input
             type="email"
+            className="form-control"
             id="email"
             name="email"
             value={newUser.email}
             onChange={handleInputChange}
           />
         </div>
-        <div>
-          <label htmlFor="password">{translate("password")}</label>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">{translate("password")}</label>
           <input
             type="password"
+            className="form-control"
             id="password"
             name="password"
             value={newUser.password}
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit">{translate("register")}</button>
+        <div className="mb-3">
+          <label htmlFor="role" className="form-label">{translate("user_role")}</label>
+          <select
+            className="form-select"
+            id="role"
+            name="role"
+            value={selectedRole}
+            onChange={handleRoleChange}
+          >
+            <option value="">{translate("select_role")}</option>
+            <option value="user">{translate("user")}</option>
+            <option value="sysadmin">{translate("sysadmin")}</option>
+            <option value="admin">{translate("admin")}</option>
+          </select>
+        </div>
+        <button type="submit" className="btn btn-primary">{translate("register")}</button>
       </form>
-      {editingUser && (
-        <div>
-          <h3>{translate("edit")}</h3>
-          <form onSubmit={() => handleEditUser(editingUser)}>
-            <div>
-              <label htmlFor="edit-username">{translate("username")}</label>
-              <input
-                type="text"
-                id="edit-username"
-                name="username"
-                value={editingUser.username}
-                onChange={(e) =>
-                  setEditingUser({ ...editingUser, username: e.target.value })
-                }
-              />
-            </div>
-            <div>
-              <label htmlFor="edit-email">{translate("email")}</label>
-              <input
-                type="email"
-                id="edit-email"
-                name="email"
-                value={editingUser.email}
-                onChange={(e) =>
-                  setEditingUser({ ...editingUser, email: e.target.value })
-                }
-              />
-            </div>
-            <button type="submit">{translate("save_changes")}</button>
-            <button type="button" onClick={handleCancelEdit}>
-              {translate("cancel")}
-            </button>
-          </form>
         </div>
       )}
-    </div>
-  );
-};
 
 export default UserManagement;
