@@ -14,7 +14,6 @@ const Login = () => {
   const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userRole, setUserRole] = useState("user");
 
   const { handleLogin } = useContext(AuthenticationContext);
 
@@ -36,11 +35,6 @@ const Login = () => {
       })
       .catch((error) => console.log(error));
   }, []);
-
-  const customAlert = (messageKey) => {
-    const translatedMessage = translate(messageKey);
-    window.alert(translatedMessage);
-  };
 
   const emailChangeHandler = (event) => {
     if (emailRef.current.value.length > 0) {
@@ -78,22 +72,19 @@ const Login = () => {
     const user = users.find((user) => user.email === email);
 
     const passwordUsers = users.find((user) => user.password === password);
-
+  
     if (!user) {
       toast.warning(translate("wrong_email"));
       return;
-      // } else {
-      //   users.map((state) =>
-      //     state.email === email ? setUserRole(state.role) : setUserRole("user")
-      //   );
-      //   localStorage.setItem("userRole", JSON.stringify(userRole));
     }
 
     if (!passwordUsers) {
       toast.warning(translate("wrong_password"));
       return;
     }
-
+    const userRole = user.role || "user";
+    localStorage.setItem("userID", user.id);
+    localStorage.setItem("userRole", userRole);
     handleLogin(email);
     navigate("/home");
   };

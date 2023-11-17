@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import TodoForm from "../todoForm/TodoForm";
 import TodoCard from "../todoCard/TodoCard";
 import EditTodo from "../editTodo/EditTodo";
+import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 function Todos() {
@@ -10,6 +11,9 @@ function Todos() {
 
   const [tasks, setTasksState] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
+  const [userID, setUserID] = useState("");
+  const [userRole, setUserRole] = useState("");
+  const [filteredTasks, setFilteredTasks] = useState([]);
 
   const setTasks = (newTasks) => {
     setTasksState(newTasks);
@@ -25,7 +29,15 @@ function Todos() {
     if (storedTasks) {
       setTasks(JSON.parse(storedTasks));
     }
+    const storedUserID = localStorage.getItem("userID");
+    setUserID(storedUserID);
+    const storedUserRole = localStorage.getItem("userRole");
+    setUserRole(storedUserRole);
   }, []);
+
+  useEffect(() => {
+    setFilteredTasks(userRole.trim() === "user" ? tasks.filter((task) => task.userID === userID) : tasks);
+  }, [userRole, tasks, userID]);
 
   const addTask = (newTask) => {
     setTasks([...tasks, newTask]);
@@ -77,7 +89,7 @@ function Todos() {
         onDeleteCompletedTask={deleteCompletedTasks}
       />
       <Row className="mt-4">
-        {tasks.map((task, index) => (
+        {filteredTasks.map((task, index) => (
           <Col key={index} xs={12} md={6} lg={4} className="mb-3">
             {editingTask === task ? (
               <EditTodo
