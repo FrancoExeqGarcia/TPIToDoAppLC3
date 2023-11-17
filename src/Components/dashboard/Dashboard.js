@@ -21,7 +21,7 @@ const Dashboard = () => {
     handleLogout();
     navigate("/login");
   };
-
+  const userRole = localStorage.getItem("userRole");
   return (
     <Container fluid>
       <Navbar bg="light" variant="light" className="d-flex align-items-center">
@@ -44,7 +44,7 @@ const Dashboard = () => {
       
 
       <ComboLanguage />
-      <UserManagement />
+      {userRole === '"sysadmin"' && <UserManagement />}
       <Row>
         <Col xs={12} className="text-center mt-4">
           <Todos />
