@@ -3,7 +3,6 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import TodoForm from "../todoForm/TodoForm";
 import TodoCard from "../todoCard/TodoCard";
 import EditTodo from "../editTodo/EditTodo"; 
-import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 
@@ -13,6 +12,7 @@ function Todos() {
 
   const [tasks, setTasksState] = useState([]);
   const [editingTask, setEditingTask] = useState(null); 
+  const [filteredTasks,setFilteredTasks]=useState()
   
   const setTasks = (newTasks) => {
     setTasksState(newTasks);
@@ -29,7 +29,7 @@ function Todos() {
       setTasks(JSON.parse(storedTasks));
     }
   }, []);
-
+  
   const addTask = (newTask) => {
     setTasks([...tasks, newTask]);
   };
