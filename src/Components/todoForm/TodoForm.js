@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
-import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { Form, Button, Col, Row, Alert } from "react-bootstrap";
 
@@ -19,6 +17,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     if (taskName.trim() === "") {
       setErrorMessage("Por favor, ingresa el nombre de la tarea.");
@@ -44,12 +43,14 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
       );
       return;
     }
-
+    const userID = JSON.parse(localStorage.getItem("userID"));
+    
     const newTask = {
       name: taskName,
       startDate,
       endDate,
       completed: false,
+      userID,
     };
 
     if (editedTask) {

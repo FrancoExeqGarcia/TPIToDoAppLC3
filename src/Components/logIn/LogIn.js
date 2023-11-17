@@ -15,7 +15,6 @@ const Login = () => {
   const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userRole, setUserRole] = useState("user");
 
   const { handleLogin } = useContext(AuthenticationContext);
 
@@ -83,18 +82,14 @@ const Login = () => {
     if (!user) {
       toast.warning(translate("wrong_email"));
       return;
-      // } else {
-      //   users.map((state) =>
-      //     state.email === email ? setUserRole(state.role) : setUserRole("user")
-      //   );
-      //   localStorage.setItem("userRole", JSON.stringify(userRole));
     }
 
     if (!passwordUsers) {
       toast.warning(translate("wrong_password"));
       return;
     }
-
+    localStorage.setItem("userRole", JSON.stringify(user.role));
+    localStorage.setItem("userID", JSON.stringify(user.id ));
     handleLogin(email);
     navigate("/home");
   };
