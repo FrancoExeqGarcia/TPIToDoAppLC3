@@ -4,17 +4,17 @@ import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
-import { ThemeContext } from "../services/themeContext/theme.context";
+import { TranslateContext } from "../../services/translationContext/translation.context";
+import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext); // Usa ThemeContext para obtener el tema
   const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userRole, setUserRole] = useState("user");
 
   const { handleLogin } = useContext(AuthenticationContext);
 
@@ -82,18 +82,14 @@ const Login = () => {
     if (!user) {
       toast.warning(translate("wrong_email"));
       return;
-      // } else {
-      //   users.map((state) =>
-      //     state.email === email ? setUserRole(state.role) : setUserRole("user")
-      //   );
-      //   localStorage.setItem("userRole", JSON.stringify(userRole));
     }
 
     if (!passwordUsers) {
       toast.warning(translate("wrong_password"));
       return;
     }
-
+    localStorage.setItem("userRole", JSON.stringify(user.role));
+    localStorage.setItem("userID", JSON.stringify(user.id ));
     handleLogin(email);
     navigate("/home");
   };

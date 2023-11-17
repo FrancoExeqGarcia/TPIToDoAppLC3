@@ -18,6 +18,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+
     if (taskName.trim() === "") {
       setErrorMessage("Por favor, ingresa el nombre de la tarea.");
       return;
@@ -42,18 +43,22 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
       );
       return;
     }
-
+    const userID = JSON.parse(localStorage.getItem("userID"));
+    
     const newTask = {
       name: taskName,
       startDate,
       endDate,
       completed: false,
+      userID,
     };
 
     if (editedTask) {
+      
       onAddTask({ ...editedTask, ...newTask });
     } else {
-      const taskWithId = { ...newTask, id: Date.now() };
+      
+      const taskWithId = { ...newTask, id: Date.now() }; 
       onAddTask(taskWithId);
     }
 
@@ -65,11 +70,11 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
 
   return (
     <Form onSubmit={handleSubmit} className="mt-4">
-      <Form.Group as={Row} className="mb-3">
-        <Form.Label column sm={3} className="text-end fw-bold">
+      <Form.Group as={Row}>
+        <Form.Label column sm={4} className="text-right">
           {translate("name_task")}
         </Form.Label>
-        <Col sm={6}>
+        <Col sm={8}>
           <Form.Control
             type="text"
             value={taskName}
@@ -77,11 +82,11 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
           />
         </Col>
       </Form.Group>
-      <Form.Group as={Row} className="mb-3">
-        <Form.Label column sm={3} className="text-end fw-bold">
+      <Form.Group as={Row}>
+        <Form.Label column sm={4} className="text-right">
           {translate("start_date")}
         </Form.Label>
-        <Col sm={6}>
+        <Col sm={8}>
           <Form.Control
             type="date"
             value={startDate}
@@ -89,11 +94,11 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
           />
         </Col>
       </Form.Group>
-      <Form.Group as={Row} className="mb-3">
-        <Form.Label column sm={3} className="text-end fw-bold">
+      <Form.Group as={Row}>
+        <Form.Label column sm={4} className="text-right">
           {translate("end_date")}
         </Form.Label>
-        <Col sm={6}>
+        <Col sm={8}>
           <Form.Control
             type="date"
             value={endDate}
@@ -102,13 +107,8 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
         </Col>
       </Form.Group>
       <Form.Group as={Row}>
-        <Col sm={{ span: 6, offset: 3 }}>
-          <Button
-            variant="success"
-            type="submit"
-            className="mt-3"
-            style={{ marginRight: "8px" }}
-          >
+        <Col sm={{ span: 8, offset: 4 }}>
+          <Button variant="primary" type="submit" className="mt-3">
             {translate("add_task")}
           </Button>
           <Button

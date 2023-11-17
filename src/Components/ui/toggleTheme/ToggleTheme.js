@@ -13,7 +13,6 @@ const ToggleTheme = () => {
       className="ml-2 mt-2 mt-md-0"
       variant="secondary"
       onClick={toggleTheme}
-      style={{ marginRight: "8px" }}
     >
       {translate(
         theme === "oscuro" ? "light_theme_change" : "dark_theme_change"
