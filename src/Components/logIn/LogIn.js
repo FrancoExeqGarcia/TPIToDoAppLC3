@@ -5,14 +5,13 @@ import { AuthenticationContext } from "../services/authenticationContext/authent
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 import { TranslateContext } from "../../services/translationContext/translation.context";
-import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
+import { ThemeContext } from "../services/themeContext/theme.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Login = () => {
+const Login = ({ onLoggedIn }) => {
   const { theme } = useContext(ThemeContext); // Usa ThemeContext para obtener el tema
-  const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userRole, setUserRole] = useState("user");
@@ -23,6 +22,7 @@ const Login = () => {
   const passwordRef = useRef(null);
 
   const navigate = useNavigate();
+
   const translate = useTranslation();
 
   useEffect(() => {
@@ -131,7 +131,15 @@ const Login = () => {
         >
           {translate("login")}
         </button>
+        <button
+          onClick={navigateToAddNewUser} // por si creamos usuarios
+          className="btn btn-secondary btn-block mt-3"
+          type="button"
+        >
+          {translate("register_new_user")}
+        </button>
         <br />
+
         <ToggleTheme />
       </div>
       <ToastContainer

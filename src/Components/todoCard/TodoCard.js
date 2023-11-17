@@ -1,6 +1,8 @@
+import React from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import React, { useState } from "react";
 
+import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
@@ -24,7 +26,7 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
   };
 
   return (
-    <Card bg="dark" key="dark" text="light">
+    <Card bg="success" key="dark" text="light">
       <Card.Body>
         <Card.Title>{task.name}</Card.Title>
         <Card.Text>
