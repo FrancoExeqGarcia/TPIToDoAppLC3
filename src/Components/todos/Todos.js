@@ -1,30 +1,27 @@
-import React, { useState,useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import TodoForm from "../todoForm/TodoForm";
 import TodoCard from "../todoCard/TodoCard";
-import EditTodo from "../editTodo/EditTodo"; 
-import { TranslateContext } from "../../services/translationContext/translation.context";
+import EditTodo from "../editTodo/EditTodo";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
-
-
 function Todos() {
-  const translate = useTranslation()
+  const translate = useTranslation();
 
   const [tasks, setTasksState] = useState([]);
-  const [editingTask, setEditingTask] = useState(null); 
-  
+  const [editingTask, setEditingTask] = useState(null);
+
   const setTasks = (newTasks) => {
     setTasksState(newTasks);
     saveTasksToLocalStorage(newTasks);
   };
 
   const saveTasksToLocalStorage = (tasks) => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem('tasks');
+    const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
       setTasks(JSON.parse(storedTasks));
     }
@@ -58,19 +55,17 @@ function Todos() {
       setEditingTask(task);
     }
   };
-  
 
   const saveEditedTask = (editedTask) => {
     const updatedTasks = tasks.map((task) =>
       task.id === editedTask.id ? editedTask : task
     );
     setTasks(updatedTasks);
-    setEditingTask(null); 
+    setEditingTask(null);
   };
-  
 
   const cancelEdit = () => {
-    setEditingTask(null); 
+    setEditingTask(null);
   };
 
   return (

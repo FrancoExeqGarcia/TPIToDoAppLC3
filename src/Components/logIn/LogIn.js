@@ -4,14 +4,13 @@ import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
-import { TranslateContext } from "../../services/translationContext/translation.context";
-import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
+import { ThemeContext } from "../services/themeContext/theme.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const { theme } = useContext(ThemeContext); // Usa ThemeContext para obtener el tema
+  const { theme } = useContext(ThemeContext);
   const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
