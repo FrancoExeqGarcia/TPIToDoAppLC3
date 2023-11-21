@@ -11,24 +11,44 @@ function Todos() {
   const translate = useTranslation()
 
   const [tasks, setTasksState] = useState([]);
-  const [editingTask, setEditingTask] = useState(null); 
-  
+  const [editingTask, setEditingTask] = useState(null);
+  const [userID, setUserID] = useState("");
+  const [filteredTasks, setFilteredTasks] = useState([]); 
+  const [userRole, setUserRole] = useState("");
+
   const setTasks = (newTasks) => {
     setTasksState(newTasks);
     saveTasksToLocalStorage(newTasks);
   };
 
   const saveTasksToLocalStorage = (tasks) => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   };
 
   useEffect(() => {
-    const storedTasks = localStorage.getItem('tasks');
+    const storedTasks = localStorage.getItem("tasks");
     if (storedTasks) {
       setTasks(JSON.parse(storedTasks));
     }
+    const storedUserID = localStorage.getItem("userID");
+    if (storedUserID) {
+      setUserID(storedUserID);
+    }
+    const storedUserRole = localStorage.getItem("userRole");
+    if (storedUserRole) {
+      setUserRole(storedUserRole);
+    }
   }, []);
 
+  useEffect(() => {
+    if (userRole === '"user"') {
+      const newFilteredTasks = tasks.filter((task) => task.userID === Number(userID));
+      setFilteredTasks(newFilteredTasks);
+    } else {
+      setFilteredTasks(tasks);
+    }
+  }, [tasks, userID, userRole]);
+  
   const addTask = (newTask) => {
     setTasks([...tasks, newTask]);
   };
@@ -81,7 +101,7 @@ function Todos() {
         onDeleteCompletedTask={deleteCompletedTasks}
       />
       <Row className="mt-4">
-        {tasks.map((task, index) => (
+        {filteredTasks.map((task, index) => (
           <Col key={index} xs={12} md={6} lg={4} className="mb-3">
             {editingTask === task ? (
               <EditTodo
