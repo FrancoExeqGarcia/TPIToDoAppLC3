@@ -52,8 +52,19 @@ export const dictionary_translations = {
       { key: "acceptButton", value:"Aceptar"},
       { key: "username", value:"Nombre de usuario"},
       { key: "email", value:"Correo electrónico"},
-      { key: "register_new_user", value:"No tienes una cuenta?"}
-      
+      { key: "register_new_user", value:"No tienes una cuenta?"},
+      { key: "complete_all_fields", value:"Complete todos los campos."},
+      { key: "wrong_email", value:"Email equivocado."},
+      { key: "wrong_password", value:"Contraseña equivocada."},
+      { key: "completed", value:"Completada."},
+      { key: "user_role", value:"Rol de usuario"},
+      { key: "select_role", value:"Seleccionar rol"},
+      { key: "user", value:"Usuario"},
+      { key: "error_obtain_user", value:"Error al obtenet el usuario"},
+      { key: "error_add_user", value:"Error al agregar el usuario"},
+      { key: "error_edit_user", value:"Error al editar el usuario"},
+      { key: "error_delete_user", value:"Error al eliminar usuario"}
+
     ],
     en: [
       { key: "login", value: "Login" },
@@ -107,7 +118,18 @@ export const dictionary_translations = {
       { key: "acceptButton", value:"Accept"},
       { key: "username", value:"Username"},
       { key: "email", value:"Email"},
-      { key: "register_new_user", value:"You do not have an account?"}
+      { key: "register_new_user", value:"You do not have an account?"},
+      { key: "complete_all_fields", value:"Complete all fields."},
+      { key: "wrong_email", value:"Wrong email."},
+      { key: "wrong_password", value:"Wrong password."},
+      { key: "completed", value:"Completed."},
+      { key: "user_role", value:"User role"},
+      { key: "select_role", value:"Select role"},
+      { key: "user", value:"User"},
+      { key: "error_obtain_user", value:"Error getting user"},
+      { key: "error_add_user", value:"Error adding user"},
+      { key: "error_edit_user", value:"Error editing user"},
+      { key: "error_delete_user", value:"Error deleting user"}
     ],
   };
   
