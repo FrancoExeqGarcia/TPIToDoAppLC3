@@ -22,7 +22,7 @@ const UserManagement = () => {
       const data = await response.json();
       setUsers(data);
     } catch (error) {
-      console.error("Error al obtener usuarios:", error);
+      console.error(translate("error_obtain_user"));
     }
   };
 
@@ -51,7 +51,7 @@ const UserManagement = () => {
       setNewUser({ email: "", password: "" });
       setSelectedRole(""); // Resetear el rol seleccionado después de agregar el usuario
     } catch (error) {
-      console.error("Error al agregar usuario:", error);
+      console.error(translate("error_add_user"));
     }
   };
 
@@ -70,7 +70,7 @@ const UserManagement = () => {
       setUsers(updatedUsers);
       setEditingUser(null);
     } catch (error) {
-      console.error("Error al editar usuario:", error);
+      console.error(translate("error_edit_user"));
     }
   };
 
@@ -82,7 +82,7 @@ const UserManagement = () => {
       const updatedUsers = users.filter((user) => user.id !== id);
       setUsers(updatedUsers);
     } catch (error) {
-      console.error("Error al borrar usuario:", error);
+      console.error(translate("error_delete_user"));
     }
   };
 

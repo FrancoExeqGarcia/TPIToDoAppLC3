@@ -26,7 +26,7 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
         <Card.Text>{translate("end_date")}: {new Date(task.endDate).toLocaleDateString()}</Card.Text>
         <Form.Check
           type="checkbox"
-          label="Completada"
+          label= {translate("completed")}
           onClick={() => onMarkAsCompleted(task)}
           />
           <Button
