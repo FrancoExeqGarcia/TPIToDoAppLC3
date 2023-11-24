@@ -55,9 +55,9 @@ const UserManagement = () => {
     }
   };
 
-  const handleEditUser = async (editedUser) => {
+  const handleEditUser = async (editedUser, id) => {
     try {
-      await fetch(`/api/users/${editedUser.id}`, {
+      await fetch(`https://task-minder.onrender.com/users/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +76,7 @@ const UserManagement = () => {
 
   const handleDeleteUser = async (id) => {
     try {
-      await fetch(`/api/users/${id}`, {
+      await fetch(`https://task-minder.onrender.com/users/${id}`, {
         method: "DELETE",
       });
       const updatedUsers = users.filter((user) => user.id !== id);
