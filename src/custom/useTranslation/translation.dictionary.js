@@ -64,7 +64,9 @@ export const dictionary_translations = {
       { key: "error_obtain_user", value:"Error al obtenet el usuario"},
       { key: "error_add_user", value:"Error al agregar el usuario"},
       { key: "error_edit_user", value:"Error al editar el usuario"},
-      { key: "error_delete_user", value:"Error al eliminar usuario"}
+      { key: "save", value: "Save"},
+      { key: "error_delete_user", value:"Error al eliminar usuario"},
+      { key: "campos_obligatorios", value: "Por favor, complete todos los campos obligatorios."},
 
     ],
     en: [
@@ -91,6 +93,7 @@ export const dictionary_translations = {
       { key: "login", value: "Log in to your account" },
       { key: "edit", value: "Edit" },
       { key: "edit_admin", value: "Edit user"},
+      { key: "save", value: "Save"},
       { key: "save_changes", value: "Save changes" },
       { key: "alert_empty_fields", value: "complete all fields",},
       { key: "email_exist", value: "Email is already in use" },
@@ -131,7 +134,9 @@ export const dictionary_translations = {
       { key: "error_obtain_user", value:"Error getting user"},
       { key: "error_add_user", value:"Error adding user"},
       { key: "error_edit_user", value:"Error editing user"},
-      { key: "error_delete_user", value:"Error deleting user"}
+      { key: "error_delete_user", value:"Error deleting user"},
+      { key: "campos_obligatorios", value: "Please complete all fields"},
+
     ],
   };
   

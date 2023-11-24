@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 const UserManagement = () => {
-  const translate = useTranslation();
+  const [language, setLanguage] = useState("es");
+  const translate = useTranslation(language);
 
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({
@@ -12,10 +13,11 @@ const UserManagement = () => {
   });
   const [editingUser, setEditingUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [error, setError] = useState(null); // Estado separado para el mensaje de error
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [language]);
 
   const getUsers = async () => {
     try {
@@ -38,6 +40,11 @@ const UserManagement = () => {
   const handleAddUser = async (e) => {
     e.preventDefault();
 
+    if (!formData.email || !formData.password || !formData.role) {
+      setError(translate("complete_all_fields"));
+      return;
+    }
+
     try {
       const response = await fetch("https://task-minder.onrender.com/users", {
         method: "POST",
@@ -53,6 +60,7 @@ const UserManagement = () => {
         password: "",
         role: "",
       });
+      setError(null); // Limpiar el error si se completó exitosamente
     } catch (error) {
       console.error(translate("error_add_user"));
     }
@@ -60,6 +68,11 @@ const UserManagement = () => {
 
   const handleEditUser = async (e) => {
     e.preventDefault();
+
+    if (!formData.email || !formData.role) {
+      setError(translate("complete_required_fields"));
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -84,6 +97,7 @@ const UserManagement = () => {
         role: "",
       });
       setIsEditing(false);
+      setError(null); // Limpiar el error si se completó exitosamente
     } catch (error) {
       console.error(translate("error_edit_user"));
     }
@@ -109,6 +123,7 @@ const UserManagement = () => {
       role: user.role,
     });
     setIsEditing(true);
+    setError(null); // Limpiar el error al iniciar la edición
   };
 
   const handleCancelEdit = () => {
@@ -119,6 +134,7 @@ const UserManagement = () => {
       role: "",
     });
     setIsEditing(false);
+    setError(null); // Limpiar el error al cancelar la edición
   };
 
   return (
@@ -148,6 +164,7 @@ const UserManagement = () => {
         </div>
         <div className="col-md-9">
           <h3>{isEditing ? translate("edit_admin") : translate("create_admin")}</h3>
+          {error && <div className="alert alert-danger">{error}</div>}
           <form onSubmit={isEditing ? handleEditUser : handleAddUser}>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">
@@ -160,6 +177,7 @@ const UserManagement = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="mb-3">
@@ -185,8 +203,11 @@ const UserManagement = () => {
                 name="role"
                 value={formData.role}
                 onChange={handleInputChange}
+                required
               >
-                <option value="">{translate("select_role")}</option>
+                <option value="" disabled>
+                  {translate("select_role")}
+                </option>
                 <option value="user">{translate("user")}</option>
                 <option value="sysadmin">{translate("sysadmin")}</option>
                 <option value="admin">{translate("admin")}</option>
