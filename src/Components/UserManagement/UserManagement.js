@@ -11,7 +11,8 @@ const UserManagement = () => {
     role: "",
   });
   const [editingUser, setEditingUser] = useState(null);
-  const [isEditing, setIsEditing] = useState(false); 
+  const [isEditing, setIsEditing] = useState(false);
+
   useEffect(() => {
     getUsers();
   }, []);
@@ -82,7 +83,7 @@ const UserManagement = () => {
         password: "",
         role: "",
       });
-      setIsEditing(false); 
+      setIsEditing(false);
     } catch (error) {
       console.error(translate("error_edit_user"));
     }
@@ -107,7 +108,7 @@ const UserManagement = () => {
       password: "",
       role: user.role,
     });
-    setIsEditing(true); 
+    setIsEditing(true);
   };
 
   const handleCancelEdit = () => {
@@ -122,84 +123,90 @@ const UserManagement = () => {
 
   return (
     <div className="container mt-4">
-      <h2>{translate("administer_users")}</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            {user.email}{" "}
-            <button
-              className="btn btn-sm btn-primary me-2"
-              onClick={() => handleEditClick(user)}
-            >
-              {translate("edit")}
-            </button>{" "}
-            <button
-              className="btn btn-sm btn-danger"
-              onClick={() => handleDeleteUser(user.id)}
-            >
-              {translate("delete")}
+      <div className="row">
+        <div className="col-md-3">
+          <h2>{translate("administer_users")}</h2>
+          <ul>
+            {users.map((user) => (
+              <li key={user.id}>
+                {user.email}{" "}
+                <button
+                  className="btn btn-sm btn-primary me-2"
+                  onClick={() => handleEditClick(user)}
+                >
+                  {translate("edit")}
+                </button>{" "}
+                <button
+                  className="btn btn-sm btn-danger"
+                  onClick={() => handleDeleteUser(user.id)}
+                >
+                  {translate("delete")}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="col-md-9">
+          <h3>{isEditing ? translate("edit_admin") : translate("create_admin")}</h3>
+          <form onSubmit={isEditing ? handleEditUser : handleAddUser}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                {translate("email")}
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                {translate("password")}
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="role" className="form-label">
+                {translate("user_role")}
+              </label>
+              <select
+                className="form-select"
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleInputChange}
+              >
+                <option value="">{translate("select_role")}</option>
+                <option value="user">{translate("user")}</option>
+                <option value="sysadmin">{translate("sysadmin")}</option>
+                <option value="admin">{translate("admin")}</option>
+              </select>
+            </div>
+            <button type="submit" className="btn btn-primary">
+              {isEditing ? translate("save") : translate("register")}
             </button>
-          </li>
-        ))}
-      </ul>
-      <h3>{isEditing ? translate("edit_admin") : translate("create_admin")}</h3>
-      <form onSubmit={isEditing ? handleEditUser : handleAddUser}>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            {translate("email")}
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-          />
+            {isEditing && (
+              <button
+                type="button"
+                className="btn btn-secondary ms-2"
+                onClick={handleCancelEdit}
+              >
+                {translate("cancel")}
+              </button>
+            )}
+          </form>
         </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            {translate("password")}
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="role" className="form-label">
-            {translate("user_role")}
-          </label>
-          <select
-            className="form-select"
-            id="role"
-            name="role"
-            value={formData.role}
-            onChange={handleInputChange}
-          >
-            <option value="">{translate("select_role")}</option>
-            <option value="user">{translate("user")}</option>
-            <option value="sysadmin">{translate("sysadmin")}</option>
-            <option value="admin">{translate("admin")}</option>
-          </select>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          {isEditing ? translate("save") : translate("register")}
-        </button>
-        {isEditing && (
-          <button
-            type="button"
-            className="btn btn-secondary ms-2"
-            onClick={handleCancelEdit}
-          >
-            {translate("cancel")}
-          </button>
-        )}
-      </form>
+      </div>
     </div>
   );
 };
