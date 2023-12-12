@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import TodoForm from "../todoForm/TodoForm";
-import TodoCard from "../todoCard/TodoCard";
-import EditTodo from "../editTodo/EditTodo"; 
 import useTranslation from "../../custom/useTranslation/useTranslation";
+import ProjectForm from "../projectForm/ProjectForm";
+import EditProject from "../editProject/EditProject";
+import ProjectCard from "../projectCard/ProjectCard";
 
 
 
@@ -49,8 +49,8 @@ function Projects() {
     }
   }, [projects, userID, userRole]);
   
-  const addproject = (newproject) => {
-    setProjects([...projects, newproject]);
+  const addProject = (newProject) => {
+    setProjects([...projects, newProject]);
   };
 
   const deleteproject = (index) => {
@@ -96,21 +96,21 @@ function Projects() {
     <Container className="mt-4">
       <h1 className="text-center mb-4">{translate("list")}</h1>
 
-      <TodoForm
-        onAddproject={addproject}
+      <ProjectForm
+        onAddProject={addProject}
         onDeleteCompletedproject={deleteCompletedProjects}
       />
       <Row className="mt-4">
         {filteredProjects.map((project, index) => (
           <Col key={index} xs={12} md={6} lg={4} className="mb-3">
             {editingproject === project ? (
-              <EditTodo
+              <EditProject
                 project={project}
                 onUpdateproject={saveEditedProject}
                 onCancel={cancelEdit}
               />
             ) : (
-              <TodoCard
+              <ProjectCard
                 project={project}
                 onDeleteproject={() => deleteproject(index)}
                 onEditProject={editProject}

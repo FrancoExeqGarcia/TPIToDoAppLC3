@@ -138,7 +138,7 @@ export const dictionary_translations = {
       { key: "error_edit_user", value:"Error editing user"},
       { key: "error_delete_user", value:"Error deleting user"},
       { key: "campos_obligatorios", value: "Please complete all fields"},
-      { key : "name_project", value: "Name projects:"},
+      { key : "name_project", value: "Name project:"},
       { key : "add_project", value: "Add project"},
       { key : "project_id", value: "Project ID"}
 
