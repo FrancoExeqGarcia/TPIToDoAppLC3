@@ -9,6 +9,8 @@ import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 //import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import UserManagement from "../UserManagement/UserManagement";
+import ProjectForm from "../projectForm/ProjectForm";
+import Projects from "../projects/Projects";
 
 const Dashboard = () => {
   const { handleLogout, user } = useContext(AuthenticationContext);
@@ -45,6 +47,10 @@ const Dashboard = () => {
 
       <ComboLanguage />
       {userRole === '"sysadmin"' && <UserManagement />}
+      {userRole === '"sysadmin"' || userRole === '"admin"' ? <ProjectForm /> : null}
+
+
+
       <Row>
         <Col xs={12} className="text-center mt-4">
           <Todos />
