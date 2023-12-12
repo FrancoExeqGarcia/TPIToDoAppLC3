@@ -44,8 +44,8 @@ export const dictionary_translations = {
       { key: "start_date", value:"Fecha de inicio: "},
       { key: "end_date", value:"Fecha de finalizacion: "},
       { key: "name_task", value:"Nombre de la tarea: "},
-      {key: "not_found", value:"¡Oops! La página solicitada no fue encontrada" },
-      {key: "return", value:"Volver a iniciar sesion" },
+      { key: "not_found", value:"¡Oops! La página solicitada no fue encontrada" },
+      { key: "return", value:"Volver a iniciar sesion" },
       { key: "add_task", value:"Agregar tarea"},
       { key: "delete_completed", value:"Eliminar completadas"},
       { key: "emptyEmail", value:"Email vacío"},
@@ -68,8 +68,8 @@ export const dictionary_translations = {
       { key: "error_delete_user", value:"Error al eliminar usuario"},
       { key: "campos_obligatorios", value: "Por favor, complete todos los campos obligatorios."},
       { key : "name_project", value: "Nombre del proyecto:"},
-      { key : "add_project", value: "Agregar proyecto"}
-
+      { key : "add_project", value: "Agregar proyecto"},
+      { key : "project_id", value: "ID del Proyecto"}
     ],
     en: [
       { key: "login", value: "Login" },
@@ -116,8 +116,8 @@ export const dictionary_translations = {
       { key: "start_date", value:"Start date: "},
       { key: "end_date", value:"End date: "},
       { key: "name_task", value:"Name task: "},
-      {key: "not_found", value:"¡Oops! The requested page was not found" },
-      {key: "return", value:"Return to log" },
+      { key: "not_found", value:"¡Oops! The requested page was not found" },
+      { key: "return", value:"Return to log" },
       { key: "add_task", value:"Add task"},
       { key: "delete_completed", value:"Delete completed"},
       { key: "emptyEmail", value:"Empty Email"},
@@ -139,7 +139,8 @@ export const dictionary_translations = {
       { key: "error_delete_user", value:"Error deleting user"},
       { key: "campos_obligatorios", value: "Please complete all fields"},
       { key : "name_project", value: "Name projects:"},
-      { key : "add_project", value: "Add project"}
+      { key : "add_project", value: "Add project"},
+      { key : "project_id", value: "Project ID"}
 
     ],
   };

@@ -11,14 +11,14 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
   const [taskName, setTaskName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [selectedProject, setSelectedProject] = useState("");
+  const [projectId, setProjectId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     setTaskName(editedTask ? editedTask.name : "");
     setStartDate(editedTask ? editedTask.startDate : "");
     setEndDate(editedTask ? editedTask.endDate : "");
-    setSelectedProject(editedTask ? editedTask.projectId : "");
+    setProjectId(editedTask ? editedTask.projectId : "");
   }, [editedTask]);
 
   const handleSubmit = (e) => {
@@ -58,7 +58,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
       endDate,
       completed: false,
       userID,
-      projectId: selectedProject,
+      projectId,
     };
 
     if (editedTask) {
@@ -71,7 +71,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
     setTaskName("");
     setStartDate("");
     setEndDate("");
-    setSelectedProject("");
+    setProjectId("");
     setErrorMessage("");
   };
 
@@ -110,6 +110,18 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
+          />
+        </Col>
+      </Form.Group>
+      <Form.Group as={Row}>
+        <Form.Label column sm={4} className="text-right">
+          {translate("project_id")}
+        </Form.Label>
+        <Col sm={8}>
+          <Form.Control
+            type="number"
+            value={projectId}
+            onChange={(e) => setProjectId(e.target.value)}
           />
         </Col>
       </Form.Group>
