@@ -1,10 +1,10 @@
-import React from "react";
+import React,{ useState }from "react";
 import { Card, Button, Form } from "react-bootstrap";
 
 import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
-function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsCompleted }) {
+function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsCompleted, onProjectClick }) {
   const translate = useTranslation();
 
   const handleEditClick = () => {
@@ -18,6 +18,10 @@ function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsComplete
     }
   };
 
+  const handleProjectClick = () => {
+      localStorage.setItem("projectID", JSON.stringify(project.id ));
+  };
+
   return (
     <Card bg="dark" key="dark" text="light">
       <Card.Body>
@@ -26,21 +30,25 @@ function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsComplete
         <Card.Text>{translate("end_date")}: {new Date(project.endDate).toLocaleDateString()}</Card.Text>
         <Form.Check
           type="checkbox"
-          label= {translate("completed")}
+          label={translate("completed")}
           onClick={() => onMarkAsCompleted(project)}
-          />
-          <Button
-            variant="info"
-            onClick={handleEditClick}
-            disabled={project.completed}
-          >
-            {translate("edit")}
-          </Button>
-          <Button variant="danger" onClick={() => onDeleteProject(project)}>
-            {translate("delete")}
-          </Button>
-        </Card.Body>
-      </Card>
-    );
-  }
-  export default ProjectCard;
+        />
+        <Button
+          variant="info"
+          onClick={handleEditClick}
+          disabled={project.completed}
+        >
+          {translate("edit")}
+        </Button>
+        <Button variant="danger" onClick={() => onDeleteProject(project)}>
+          {translate("delete")}
+        </Button>
+        <Button variant="primary" onClick={handleProjectClick}>
+          {translate("view_details")}
+        </Button>
+      </Card.Body>
+    </Card>
+  );
+}
+
+export default ProjectCard;

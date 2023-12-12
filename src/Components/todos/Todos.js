@@ -14,6 +14,7 @@ function Todos() {
   const [tasks, setTasksState] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
   const [userID, setUserID] = useState("");
+  const [projectID, setProjectID] = useState("");
   const [filteredTasks, setFilteredTasks] = useState([]); 
   const [userRole, setUserRole] = useState("");
 
@@ -31,7 +32,7 @@ function Todos() {
     if (storedTasks) {
       setTasks(JSON.parse(storedTasks));
     }
-    const storedUserID = localStorage.getItem("userID");
+    const storedUserID = Number(localStorage.getItem("userID"));
     if (storedUserID) {
       setUserID(storedUserID);
     }
@@ -39,11 +40,17 @@ function Todos() {
     if (storedUserRole) {
       setUserRole(storedUserRole);
     }
+    const storedProjectID = Number(localStorage.getItem("projectID"));
+    if (storedProjectID) {
+      setUserRole(storedProjectID);
+    }
   }, []);
 
   useEffect(() => {
     if (userRole === '"user"') {
-      const newFilteredTasks = tasks.filter((task) => task.userID === Number(userID));
+      const newFilteredTasks = tasks
+                                    .filter((task) => task.userID === userID)
+                                    .filter((task) => task.projectID === projectID);
       setFilteredTasks(newFilteredTasks);
     } else {
       setFilteredTasks(tasks);

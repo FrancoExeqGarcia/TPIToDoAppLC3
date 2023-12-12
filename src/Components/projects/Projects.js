@@ -7,7 +7,7 @@ import ProjectCard from "../projectCard/ProjectCard";
 
 
 
-function Projects() {
+function Projects({ onProjectClick }) {
   const translate = useTranslation()
 
   const [projects, setProjectsState] = useState([]);
@@ -115,6 +115,7 @@ function Projects() {
                 onDeleteproject={() => deleteproject(index)}
                 onEditProject={editProject}
                 onMarkAsCompleted={markprojectAsCompleted}
+                onProjectClick={() => onProjectClick(project.id)}
               />
             )}
           </Col>
