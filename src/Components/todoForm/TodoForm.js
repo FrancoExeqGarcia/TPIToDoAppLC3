@@ -2,22 +2,23 @@ import React, { useState, useEffect } from "react";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { Form, Button, Col, Row, Alert } from "react-bootstrap";
 
-function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
+function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
   const translate = useTranslation();
   const [taskName, setTaskName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [selectedProject, setSelectedProject] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     setTaskName(editedTask ? editedTask.name : "");
     setStartDate(editedTask ? editedTask.startDate : "");
     setEndDate(editedTask ? editedTask.endDate : "");
+    setSelectedProject(editedTask ? editedTask.projectId : "");
   }, [editedTask]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
 
     if (taskName.trim() === "") {
       setErrorMessage("Por favor, ingresa el nombre de la tarea.");
@@ -43,28 +44,29 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask }) {
       );
       return;
     }
+
     const userID = JSON.parse(localStorage.getItem("userID"));
-    
+
     const newTask = {
       name: taskName,
       startDate,
       endDate,
       completed: false,
       userID,
+      projectId: selectedProject,
     };
 
     if (editedTask) {
-      
       onAddTask({ ...editedTask, ...newTask });
     } else {
-      
-      const taskWithId = { ...newTask, id: Date.now() }; 
+      const taskWithId = { ...newTask, id: Date.now() };
       onAddTask(taskWithId);
     }
 
     setTaskName("");
     setStartDate("");
     setEndDate("");
+    setSelectedProject("");
     setErrorMessage("");
   };
 
