@@ -29,10 +29,10 @@ const Dashboard = () => {
   const userRole = localStorage.getItem("userRole");
   return (
     <Container fluid className={theme === "oscuro" ? "dark-theme" : ""}>
-      <Navbar 
-      variant={theme === "oscuro" ? "dark" : "light"} 
+      <Navbar
+      variant={theme === "oscuro" ? "dark" : "light"}
       className="d-flex align-items-center"
-      style={{ borderBottom: `2px solid ${theme === "oscuro" ? "white" : "black"}` }}>   
+      style={{ borderBottom: `2px solid ${theme === "oscuro" ? "white" : "black"}` }}>
       <Navbar.Brand>TASK MINDER</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
@@ -52,15 +52,15 @@ const Dashboard = () => {
       <ComboLanguage />
       {userRole === '"sysadmin"' && <UserManagement />}
       {userRole === '"sysadmin"' || userRole === '"admin"' ? <ProjectForm /> : null}
-      {userRole === '"sysadmin"' || userRole === '"admin"' ? <Projects /> : null}
+      <Projects />
 
 
 
-      <Row>
+      {/* <Row>
         <Col xs={12} className="text-center mt-4">
           <Todos />
         </Col>
-      </Row>
+      </Row> */}
     </Container>
   );
 };

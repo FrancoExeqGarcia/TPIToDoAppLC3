@@ -4,11 +4,7 @@ import { Form, Button, Col, Row, Alert, Container } from "react-bootstrap";
 import { ThemeContext } from "../services/themeContext/theme.context"; 
 import "../../App.css";
 
-function ProjectForm({
-  onAddProject,
-  onDeleteCompletedProject,
-  editedProject,
-}) {
+function ProjectForm({onAddProject,onDeleteCompletedProject,editedProject,}) {
   const { theme } = useContext(ThemeContext);
   const translate = useTranslation();
   const [projectName, setProjectName] = useState("");
