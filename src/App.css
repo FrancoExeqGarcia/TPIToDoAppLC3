@@ -2,7 +2,7 @@
 
 :root {
   --primary-background: #ffffff; /* Fondo principal */
-  --secondary-background: #2c2626; /* Fondo secundario (oscuro) */
+  --secondary-background: #1c1c1f; /* Fondo secundario (oscuro) */
   --text-color-light: #000000; /* Color de texto claro */
   --text-color-dark: #ffffff; /* Color de texto oscuro */
   --border-color-light: rgba(0, 0, 0, 0.384); /* Color del borde claro */
@@ -38,4 +38,11 @@
   background-color: var(--primary-background);
   color: var(--text-color-light);
   height: 100%;
+}
+.border-gray {
+  border: 1px solid #837e7e;
+   /* Puedes ajustar el color y el grosor según tus preferencias */
+}
+.rounded{
+  border-radius: 10px;
 }

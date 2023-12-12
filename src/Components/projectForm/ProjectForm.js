@@ -68,11 +68,11 @@ function ProjectForm({onAddProject,onDeleteCompletedProject,editedProject,}) {
   };
 
   return (
-    <Container className={`mt-100 form-container ${theme === "DARK" && "dark-theme"}`}>
+    <Container className={`mt-100 form-container ${theme === "DARK" && "dark-theme"} `}>
     <h1 className="text-center mb-4">
         {translate("add_project")}
       </h1>
-      <Form onSubmit={handleSubmit} className="mt-1 shadow p-5">
+      <Form onSubmit={handleSubmit} className="mt-1 shadow p-5 border-gray">
         <Form.Group as={Row}>
           <Form.Label column sm={4} className="text-right">
             {translate("name_project")}

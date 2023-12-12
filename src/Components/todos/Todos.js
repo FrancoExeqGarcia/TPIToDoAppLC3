@@ -4,6 +4,7 @@ import TodoForm from "../todoForm/TodoForm";
 import TodoCard from "../todoCard/TodoCard";
 import EditTodo from "../editTodo/EditTodo"; 
 import useTranslation from "../../custom/useTranslation/useTranslation";
+import "../../App.css";
 
 
 
@@ -94,11 +95,12 @@ function Todos() {
 
   return (
     <Container className="mt-4">
-      <h1 className="text-center mb-4">{translate("list")}</h1>
+      <h1 className="text-center mb-4 ">{translate("list")}</h1>
 
       <TodoForm
         onAddTask={addTask}
         onDeleteCompletedTask={deleteCompletedTasks}
+        
       />
       <Row className="mt-4">
         {filteredTasks.map((task, index) => (

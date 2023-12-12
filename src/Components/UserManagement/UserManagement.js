@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { ThemeContext } from "../services/themeContext/theme.context";
 import { Card, Button, Form } from "react-bootstrap";
+import "../../App.css";
 
 const UserManagement = () => {
   const [language, setLanguage] = useState("es");
@@ -141,7 +142,7 @@ const UserManagement = () => {
   };
 
   return (
-    <div className={`container mt-1 shadow p-4 ${theme === "DARK" && "dark-theme"}`}>
+    <div className={`container mt-1 shadow p-4 ${theme === "DARK" && "dark-theme"} border-gray`}>
       <div className="row">
         <div className="col-md-3">
           <h2>{translate("administer_users")}</h2>
