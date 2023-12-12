@@ -96,7 +96,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className={`login-box ${theme === "DARK" && "login-box-dark"}`}>
+      <div className={`login-box ${theme === "DARK" ? "login-box-dark" : "light-theme"}`}>
         <ComboLanguage />
         <h3 className="mb-4">{translate("welcome")}</h3>
         <div className="mb-3">

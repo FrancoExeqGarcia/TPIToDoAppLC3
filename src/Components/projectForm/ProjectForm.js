@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { Form, Button, Col, Row, Alert, Container } from "react-bootstrap";
+import { ThemeContext } from "../services/themeContext/theme.context"; 
+import "../../App.css";
 
 function ProjectForm({
   onAddProject,
   onDeleteCompletedProject,
   editedProject,
 }) {
+  const { theme } = useContext(ThemeContext);
   const translate = useTranslation();
   const [projectName, setProjectName] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -69,9 +72,11 @@ function ProjectForm({
   };
 
   return (
-    <Container className="mt-4">
-      <h1 className="text-center mb-4">{translate("add_project")}</h1>
-      <Form onSubmit={handleSubmit} className="mt-4">
+    <Container className={`mt-100 form-container ${theme === "DARK" && "dark-theme"}`}>
+    <h1 className="text-center mb-4">
+        {translate("add_project")}
+      </h1>
+      <Form onSubmit={handleSubmit} className="mt-1 shadow p-5">
         <Form.Group as={Row}>
           <Form.Label column sm={4} className="text-right">
             {translate("name_project")}
