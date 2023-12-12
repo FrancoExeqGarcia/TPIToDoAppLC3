@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useTranslation from "../../custom/useTranslation/useTranslation";
+import { ThemeContext } from "../services/themeContext/theme.context";
+import { Card, Button, Form } from "react-bootstrap";
 
 const UserManagement = () => {
   const [language, setLanguage] = useState("es");
   const translate = useTranslation(language);
+  const { theme } = useContext(ThemeContext);
 
   const [users, setUsers] = useState([]);
   const [formData, setFormData] = useState({
@@ -13,7 +16,7 @@ const UserManagement = () => {
   });
   const [editingUser, setEditingUser] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [error, setError] = useState(null); // Estado separado para el mensaje de error
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getUsers();
@@ -60,7 +63,7 @@ const UserManagement = () => {
         password: "",
         role: "",
       });
-      setError(null); // Limpiar el error si se completó exitosamente
+      setError(null);
     } catch (error) {
       console.error(translate("error_add_user"));
     }
@@ -97,7 +100,7 @@ const UserManagement = () => {
         role: "",
       });
       setIsEditing(false);
-      setError(null); // Limpiar el error si se completó exitosamente
+      setError(null);
     } catch (error) {
       console.error(translate("error_edit_user"));
     }
@@ -123,7 +126,7 @@ const UserManagement = () => {
       role: user.role,
     });
     setIsEditing(true);
-    setError(null); // Limpiar el error al iniciar la edición
+    setError(null);
   };
 
   const handleCancelEdit = () => {
@@ -134,11 +137,11 @@ const UserManagement = () => {
       role: "",
     });
     setIsEditing(false);
-    setError(null); // Limpiar el error al cancelar la edición
+    setError(null);
   };
 
   return (
-    <div className="container mt-4">
+    <div className={`container mt-1 shadow p-4 ${theme === "DARK" && "dark-theme"}`}>
       <div className="row">
         <div className="col-md-3">
           <h2>{translate("administer_users")}</h2>
@@ -147,13 +150,15 @@ const UserManagement = () => {
               <li key={user.id}>
                 {user.email}{" "}
                 <button
-                  className="btn btn-sm btn-primary me-2"
+                  type="submit"
+                  className={`${theme === "DARK" ? "btn-outline-light" : "btn-outline-dark"} me-2`}
                   onClick={() => handleEditClick(user)}
                 >
                   {translate("edit")}
                 </button>{" "}
                 <button
-                  className="btn btn-sm btn-danger"
+                  type="submit"
+                  className={`${theme === "DARK" ? "btn-outline-light" : "btn-outline-dark"}`}
                   onClick={() => handleDeleteUser(user.id)}
                 >
                   {translate("delete")}
@@ -164,7 +169,7 @@ const UserManagement = () => {
         </div>
         <div className="col-md-9">
           <h3>{isEditing ? translate("edit_admin") : translate("create_admin")}</h3>
-          {error && <div className="alert alert-danger">{error}</div>}
+          {error && <div className={`alert alert-danger ${theme === "DARK" ? "text-light" : ""}`}>{error}</div>}
           <form onSubmit={isEditing ? handleEditUser : handleAddUser}>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">

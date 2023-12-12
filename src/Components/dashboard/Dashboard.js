@@ -11,11 +11,14 @@ import useTranslation from "../../custom/useTranslation/useTranslation";
 import UserManagement from "../UserManagement/UserManagement";
 import ProjectForm from "../projectForm/ProjectForm";
 import Projects from "../projects/Projects";
+import { ThemeContext } from "../services/themeContext/theme.context";
 
 const Dashboard = () => {
   const { handleLogout, user } = useContext(AuthenticationContext);
   const navigate = useNavigate();
   const translate = useTranslation();
+  const { theme } = useContext(ThemeContext);
+
 
   const username = user.email.split("@")[0];
 
@@ -25,9 +28,12 @@ const Dashboard = () => {
   };
   const userRole = localStorage.getItem("userRole");
   return (
-    <Container fluid>
-      <Navbar bg="light" variant="light" className="d-flex align-items-center">
-        <Navbar.Brand>TASK MINDER</Navbar.Brand>
+    <Container fluid className={theme === "oscuro" ? "dark-theme" : ""}>
+      <Navbar 
+      variant={theme === "oscuro" ? "dark" : "light"} 
+      className="d-flex align-items-center"
+      style={{ borderBottom: `2px solid ${theme === "oscuro" ? "white" : "black"}` }}>   
+      <Navbar.Brand>TASK MINDER</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text className="mr-4 ms-auto me-auto">
@@ -43,11 +49,10 @@ const Dashboard = () => {
           </Button>
         </Navbar.Collapse>
       </Navbar>
-      
-
       <ComboLanguage />
       {userRole === '"sysadmin"' && <UserManagement />}
       {userRole === '"sysadmin"' || userRole === '"admin"' ? <ProjectForm /> : null}
+      {userRole === '"sysadmin"' || userRole === '"admin"' ? <Projects /> : null}
 
 
 

@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { Form, Button, Col, Row, Alert } from "react-bootstrap";
+import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
+import '../../App.css';
+
 
 function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
+  const { theme } = useContext(ThemeContext);
   const translate = useTranslation();
   const [taskName, setTaskName] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -19,6 +23,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
 
     if (taskName.trim() === "") {
       setErrorMessage("Por favor, ingresa el nombre de la tarea.");
@@ -71,8 +76,8 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mt-4">
-      <Form.Group as={Row}>
+    <Form onSubmit={handleSubmit} className={`mt-1 shadow p-5  ${theme === "DARK" && "dark-theme"}`}>
+    <Form.Group as={Row}>
         <Form.Label column sm={4} className="text-right">
           {translate("name_task")}
         </Form.Label>

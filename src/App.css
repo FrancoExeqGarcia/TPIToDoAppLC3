@@ -1,20 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap");
 
+:root {
+  --primary-background: #ffffff; /* Fondo principal */
+  --secondary-background: #2c2626; /* Fondo secundario (oscuro) */
+  --text-color-light: #000000; /* Color de texto claro */
+  --text-color-dark: #ffffff; /* Color de texto oscuro */
+  --border-color-light: rgba(0, 0, 0, 0.384); /* Color del borde claro */
+  --border-color-dark: white; /* Color del borde oscuro */
+  --button-primary-bg: #007bff; /* Fondo del botón primario */
+  --button-primary-text: #fff; /* Texto del botón primario */
+  --button-danger-bg: #dc3545; /* Fondo del botón de peligro */
+  --button-danger-text: #fff; /* Texto del botón de peligro */
+  --form-background: #ffffff;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Inika", serif;
 }
+
 /* App */
 .App {
   display: flex;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden;
 }
+
 .dark-theme {
-  background-color: #212529;
-  color: white;
+  background-color: var(--secondary-background);
+  color: var(--text-color-dark);
+  height: 100%;
+}
+.light_theme {
+  background-color: var(--primary-background);
+  color: var(--text-color-light);
   height: 100%;
 }

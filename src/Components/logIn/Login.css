@@ -7,18 +7,14 @@
 }
 
 .login-box {
-  border: 1px solid rgba(0, 0, 0, 0.384);
-  border-radius: 10px;
   width: 600px;
   height: 480px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.login-box-dark {
-  border: 1px solid white;
+  border: 6px solid rgb(0, 0, 0);
+  border-radius: 10px; /* Cambia según tus preferencias */
 }
 
 .input-container {
@@ -44,6 +40,18 @@
   cursor: pointer;
 }
 
-.login-box-dark {
-  border: 1px solid white;
+/* Estilos para el tema oscuro */
+.dark-theme .login-box {
+  border: 6px solid rgba(255, 255, 255, 0.384);
+  border-radius: 10px;
+}
+
+.dark-theme .login-box-dark {
+  border: 12px solid white;
+}
+
+/* Estilos para el tema claro */
+.light-theme .login-box {
+  border: 6px solid rgb(0, 0, 0);
+  border-radius: 10px; /* Cambia según tus preferencias */
 }
