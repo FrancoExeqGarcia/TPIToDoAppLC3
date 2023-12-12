@@ -76,7 +76,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className={`mt-1 shadow p-5  ${theme === "DARK" && "dark-theme"}`}>
+    <Form onSubmit={handleSubmit} className={`mt-1 shadow p-5  ${theme === "DARK" && "dark-theme"} border-gray`}>
     <Form.Group as={Row}>
         <Form.Label column sm={4} className="text-right">
           {translate("name_task")}

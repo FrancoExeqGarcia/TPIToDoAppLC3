@@ -64,12 +64,12 @@ export const dictionary_translations = {
       { key: "error_obtain_user", value:"Error al obtenet el usuario"},
       { key: "error_add_user", value:"Error al agregar el usuario"},
       { key: "error_edit_user", value:"Error al editar el usuario"},
-      { key: "save", value: "Save"},
+      { key: "save", value: "Guardar"},
       { key: "error_delete_user", value:"Error al eliminar usuario"},
       { key: "campos_obligatorios", value: "Por favor, complete todos los campos obligatorios."},
       { key : "name_project", value: "Nombre del proyecto:"},
       { key : "add_project", value: "Agregar proyecto"},
-      { key : "project_id", value: "ID del Proyecto"}
+      { key : "project_id", value: "ID del Proyecto"},
     ],
     en: [
       { key: "login", value: "Login" },
@@ -140,7 +140,8 @@ export const dictionary_translations = {
       { key: "campos_obligatorios", value: "Please complete all fields"},
       { key : "name_project", value: "Name project:"},
       { key : "add_project", value: "Add project"},
-      { key : "project_id", value: "Project ID"}
+      { key : "project_id", value: "Project ID"},
+      { key : "save", value: "save"}
 
     ],
   };

@@ -33,10 +33,10 @@ const Dashboard = () => {
       variant={theme === "oscuro" ? "dark" : "light"}
       className="d-flex align-items-center"
       style={{ borderBottom: `2px solid ${theme === "oscuro" ? "white" : "black"}` }}>
-      <Navbar.Brand>TASK MINDER</Navbar.Brand>
+      <Navbar.Brand className="mr-4 ms-auto me-auto border-gray rounded">TASK MINDER</Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text className="mr-4 ms-auto me-auto">
+          <Navbar.Text className="mr-4 ms-auto me-auto border-gray rounded">
             {translate("hi")} {username}!
           </Navbar.Text>
           <ToggleTheme />
@@ -56,11 +56,11 @@ const Dashboard = () => {
 
 
 
-      {/* <Row>
+      {<Row>
         <Col xs={12} className="text-center mt-4">
           <Todos />
         </Col>
-      </Row> */}
+      </Row> }
     </Container>
   );
 };
