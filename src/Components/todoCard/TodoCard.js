@@ -23,9 +23,11 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
 
   return (
     <div
-    className={`mt-1 shadow p-5 ${theme === "DARK" && "dark-theme"} border-gray`}
+      className={`mt-1 shadow  ${
+        theme === "DARK" && "dark-theme"
+      } border-black`}
     >
-      <Card.Body>
+      <Card.Body className="bg-success" key="success">
         <Card.Title>{task.name}</Card.Title>
         <Card.Text>
           {translate("start_date")}:{" "}
