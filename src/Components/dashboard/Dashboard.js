@@ -1,4 +1,3 @@
-// Dashboard.jsx
 import React, { useContext } from "react";
 import { Button, Col, Container, Navbar, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
@@ -6,10 +5,8 @@ import { AuthenticationContext } from "../services/authenticationContext/authent
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import Todos from "../todos/Todos";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
-//import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import UserManagement from "../UserManagement/UserManagement";
-import ProjectForm from "../projectForm/ProjectForm";
 import Projects from "../projects/Projects";
 import { ThemeContext } from "../services/themeContext/theme.context";
 
@@ -21,12 +18,13 @@ const Dashboard = () => {
 
 
   const username = user.email.split("@")[0];
+  const userRole = localStorage.getItem("userRole");
 
   const handleLogoutInDashboard = () => {
     handleLogout();
     navigate("/login");
   };
-  const userRole = localStorage.getItem("userRole");
+
   return (
     <Container fluid className={theme === "oscuro" ? "dark-theme" : ""}>
       <Navbar
@@ -51,16 +49,12 @@ const Dashboard = () => {
       </Navbar>
       <ComboLanguage />
       {userRole === '"sysadmin"' && <UserManagement />}
-      {userRole === '"sysadmin"' || userRole === '"admin"' ? <ProjectForm /> : null}
-      <Projects />
-
-
-
-      {<Row>
-        <Col xs={12} className="text-center mt-4">
-          <Todos />
-        </Col>
-      </Row> }
+      {userRole === '"sysadmin"' || userRole === '"admin"' ? <Projects/>: null}
+      <Row>
+      <Col xs={12} className="text-center mt-4">
+        <Todos/>
+      </Col>
+    </Row>
     </Container>
   );
 };
