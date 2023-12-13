@@ -2,10 +2,6 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-
-
-import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
-import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 function NavBar() {

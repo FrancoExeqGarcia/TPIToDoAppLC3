@@ -1,7 +1,5 @@
 import React from "react";
 import { Card, Button, Form } from "react-bootstrap";
-
-import { TranslateContext } from "../../services/translationContext/translation.context";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 
 function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsCompleted, onProjectClick }) {
