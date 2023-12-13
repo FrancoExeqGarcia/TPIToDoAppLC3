@@ -1,8 +1,4 @@
 import { createContext, useState } from "react";
-
-import ComboLanguage from "../../ui/comboLanguage/ComboLanguaje";
-import { TranslateContext } from "../../../services/translationContext/translation.context";
-import useTranslation from "../../../custom/useTranslation/useTranslation";
 export const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
-import { TranslateContext } from "../../services/translationContext/translation.context";
 import { ThemeContext } from "../services/themeContext/theme.context"; // Importa ThemeContext
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import { ToastContainer, toast } from "react-toastify";
