@@ -32,7 +32,7 @@
 .dark-theme {
   background-color: var(--secondary-background);
   color: var(--text-color-dark);
-  height: 100%;
+  height: 100vh;
 }
 .light_theme {
   background-color: var(--primary-background);
@@ -41,7 +41,6 @@
 }
 .border-gray {
   border: 1px solid #837e7e;
-   /* Puedes ajustar el color y el grosor según tus preferencias */
 }
 .rounded{
   border-radius: 10px;
