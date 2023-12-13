@@ -3,7 +3,7 @@ import { Button, Col, Container, Navbar, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { AuthenticationContext } from "../services/authenticationContext/authentication.context";
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
-import Todos from "../todos/Todos";
+
 import ComboLanguage from "../ui/comboLanguage/ComboLanguaje";
 import useTranslation from "../../custom/useTranslation/useTranslation";
 import UserManagement from "../UserManagement/UserManagement";
@@ -52,11 +52,7 @@ const Dashboard = () => {
       <Col xs={12} className="text-center mt-4">
         <Projects/>
       </Col>
-      <Row>
-      <Col xs={12} className="text-center mt-4">
-        <Todos/>
-      </Col>
-    </Row>
+
     </Container>
   );
 };

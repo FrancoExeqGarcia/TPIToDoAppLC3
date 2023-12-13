@@ -8,13 +8,13 @@ import "../../App.css";
 
 
 
-function Todos() {
+function Todos({ projectId }) {
   const translate = useTranslation()
 
   const [tasks, setTasksState] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
   const [userID, setUserID] = useState("");
-  const [projectId, setProjectId] = useState("");
+  // const [projectId, setProjectId] = useState("");
   const [filteredTasks, setFilteredTasks] = useState([]); 
   const [userRole, setUserRole] = useState("");
 
@@ -40,24 +40,30 @@ function Todos() {
     if (storedUserRole) {
       setUserRole(storedUserRole);
     }
-    const storedProjectId = Number(localStorage.getItem("projectId"));
-    if (storedProjectId) {
-      setProjectId(storedProjectId);
-    }
+    // const storedProjectId = Number(localStorage.getItem("projectId"));
+    // if (storedProjectId) {
+    //   setProjectId(storedProjectId);
+    // }
   }, []);
-
-  useEffect(() => {
-    if (userRole === '"user"') {
-      const newFilteredTasks = tasks
-                                    .filter((task) => task.projectId === projectId)
-                                    .filter((task) => task.userID === userID)
-                                    ;
-      setFilteredTasks(newFilteredTasks);
-    } else {
-      setFilteredTasks(tasks);
-    }
-  }, [tasks, userID, userRole,projectId]);
   
+      const filterTasksByProject = () => {
+        const storedProjectId = Number(localStorage.getItem("projectId"));
+        if (storedProjectId) {
+          const newFilteredTasks = tasks
+            .filter((task) => task.projectId === storedProjectId)
+            .filter((task) => task.userID === userID);
+          setFilteredTasks(newFilteredTasks);
+        } else {
+          setFilteredTasks(tasks);
+        }
+      };
+    useEffect(() => {
+      filterTasksByProject();
+    }, [tasks, userID, projectId]);
+  
+    const handleFilterButtonClick = () => {
+      filterTasksByProject();
+    };
   const addTask = (newTask) => {
     setTasks([...tasks, newTask]);
   };
@@ -104,6 +110,7 @@ function Todos() {
   return (
     <Container className="mt-4">
       <h1 className="text-center mb-4 ">{translate("list")}</h1>
+      <Button onClick={handleFilterButtonClick}>{translate("filter_by_project")}</Button>
 
       <TodoForm
         onAddTask={addTask}

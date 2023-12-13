@@ -4,6 +4,7 @@ import useTranslation from "../../custom/useTranslation/useTranslation";
 import ProjectForm from "../projectForm/ProjectForm";
 import EditProject from "../editProject/EditProject";
 import ProjectCard from "../projectCard/ProjectCard";
+import Todos from "../todos/Todos";
 
 
 
@@ -123,6 +124,11 @@ function Projects({ onProjectClick }) {
           </Col>
         ))}
       </Row>
+      <Row>
+      <Col xs={12} className="text-center mt-4">
+        <Todos/>
+      </Col>
+    </Row>
     </Container>
   );
 }
