@@ -7,6 +7,7 @@ function EditProject({ project, onUpdateProject, onCancel }) {
   const [editedName, setEditedName] = useState(project.name);
   const [editedStartDate, setEditedStartDate] = useState(project.startDate);
   const [editedEndDate, setEditedEndDate] = useState(project.endDate);
+  const [editedUserID, setEditedUserID] = useState(project.userID);
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSaveChanges = (e) => {
@@ -17,12 +18,26 @@ function EditProject({ project, onUpdateProject, onCancel }) {
       setErrorMessage("El nombre del proyecto no puede estar vacío.");
       return;
     }
+    if (!editedStartDate) {
+      setErrorMessage("Por favor, ingresa la fecha de inicio.");
+      return;
+    }
+
+    if (!editedEndDate) {
+      setErrorMessage("Por favor, ingresa la fecha de fin.");
+      return;
+    }
+    if (!editedUserID) {
+      setErrorMessage("Por favor, ingresa el user ID asociado.");
+      return;
+    }
 
     const updatedProject = {
       ...project,
       name: editedName,
       startDate: editedStartDate,
       endDate: editedEndDate,
+      userID:editedUserID,
     };
 
     // Llama a la función onUpdateProject pasando el proyecto actualizado
@@ -56,6 +71,14 @@ function EditProject({ project, onUpdateProject, onCancel }) {
           type="date"
           value={editedEndDate}
           onChange={(e) => setEditedEndDate(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>{translate("user_id")}</Form.Label>
+        <Form.Control
+          type="number"
+          value={editedUserID}
+          onChange={(e) => setEditedUserID(Number(e.target.value))}
         />
       </Form.Group>
       <Button variant="primary" type="submit">

@@ -17,6 +17,15 @@ function EditTodo({ task, onUpdateTask, onCancel }) {
       setErrorMessage("El nombre de la tarea no puede estar vacío.");
       return;
     }
+    if (!editedStartDate) {
+      setErrorMessage("Por favor, ingresa la fecha de inicio.");
+      return;
+    }
+
+    if (!editedEndDate) {
+      setErrorMessage("Por favor, ingresa la fecha de fin.");
+      return;
+    }
 
     const updatedTask = {
       ...task,
