@@ -11,7 +11,6 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
   const [taskName, setTaskName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [projectId, setProjectId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -70,7 +69,6 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
     setTaskName("");
     setStartDate("");
     setEndDate("");
-    setProjectId("");
     setErrorMessage("");
   };
 
