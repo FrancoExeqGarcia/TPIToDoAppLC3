@@ -43,7 +43,7 @@ function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsComplete
           {translate("delete")}
         </Button>
         <Button variant="primary" onClick={handleProjectClick}>
-          {translate("view_details")}
+          {translate("select_project")}
         </Button>
       </Card.Body>
     </Card>

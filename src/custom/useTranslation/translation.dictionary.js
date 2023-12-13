@@ -70,7 +70,6 @@ export const dictionary_translations = {
       { key : "name_project", value: "Nombre del proyecto:"},
       { key : "add_project", value: "Agregar proyecto"},
       { key : "project_id", value: "ID del Proyecto"},
-      { key: "user_id", value: "ID del usuario"}
     ],
     en: [
       { key: "login", value: "Login" },
@@ -142,8 +141,7 @@ export const dictionary_translations = {
       { key : "name_project", value: "Name project:"},
       { key : "add_project", value: "Add project"},
       { key : "project_id", value: "Project ID"},
-      { key : "save", value: "save"},
-      { key: "user_id", value: "User ID"}
+      { key : "save", value: "save"}
 
     ],
   };
