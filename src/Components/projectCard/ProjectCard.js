@@ -38,6 +38,7 @@ function ProjectCard({
           {translate("end_date")}:{" "}
           {new Date(project.endDate).toLocaleDateString()}
         </Card.Text>
+        <Card.Text>{translate("user_id")}: {project.userID}</Card.Text>
         <Form.Check
           type="checkbox"
           label={translate("completed")}
