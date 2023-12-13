@@ -109,7 +109,7 @@ function Todos({ projectId }) {
 
   return (
     <Container className="mt-4">
-      <h1 className="text-center mb-4 ">{translate("list")}</h1>
+      <h1 className="text-center mb-4 ">{translate("list_of_todos")}</h1>
       <Button onClick={handleFilterButtonClick}>{translate("filter_by_project")}</Button>
 
       <TodoForm

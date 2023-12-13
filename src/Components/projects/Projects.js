@@ -95,7 +95,7 @@ function Projects({ onProjectClick }) {
 
   return (
     <Container className="mt-4">
-      <h1 className="text-center mb-4">{translate("list")}</h1>
+      <h1 className="text-center mb-4">{translate("list_of_projects")}</h1>
 
       {userRole !== '"user"' && (
         <ProjectForm
