@@ -49,7 +49,9 @@ const Dashboard = () => {
       </Navbar>
       <ComboLanguage />
       {userRole === '"sysadmin"' && <UserManagement />}
-      {userRole === '"sysadmin"' || userRole === '"admin"' ? <Projects/>: null}
+      <Col xs={12} className="text-center mt-4">
+        <Projects/>
+      </Col>
       <Row>
       <Col xs={12} className="text-center mt-4">
         <Todos/>

@@ -18,9 +18,8 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
     setTaskName(editedTask ? editedTask.name : "");
     setStartDate(editedTask ? editedTask.startDate : "");
     setEndDate(editedTask ? editedTask.endDate : "");
-    setProjectId(editedTask ? editedTask.projectId : "");
   }, [editedTask]);
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -58,7 +57,7 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
       endDate,
       completed: false,
       userID,
-      projectId,
+      projectId:JSON.parse(localStorage.getItem("projectId")),
     };
 
     if (editedTask) {
@@ -110,18 +109,6 @@ function TodoForm({ onAddTask, onDeleteCompletedTask, editedTask, projects }) {
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-          />
-        </Col>
-      </Form.Group>
-      <Form.Group as={Row}>
-        <Form.Label column sm={4} className="text-right">
-          {translate("project_id")}
-        </Form.Label>
-        <Col sm={8}>
-          <Form.Control
-            type="number"
-            value={projectId}
-            onChange={(e) => setProjectId(e.target.value)}
           />
         </Col>
       </Form.Group>

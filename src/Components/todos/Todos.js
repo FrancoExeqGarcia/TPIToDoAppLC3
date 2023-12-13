@@ -42,15 +42,16 @@ function Todos() {
     }
     const storedProjectId = Number(localStorage.getItem("projectId"));
     if (storedProjectId) {
-      setUserRole(storedProjectId);
+      setProjectId(storedProjectId);
     }
   }, []);
 
   useEffect(() => {
     if (userRole === '"user"') {
       const newFilteredTasks = tasks
+                                    .filter((task) => task.projectId === projectId)
                                     .filter((task) => task.userID === userID)
-                                    .filter((task) => task.projectId === projectId);
+                                    ;
       setFilteredTasks(newFilteredTasks);
     } else {
       setFilteredTasks(tasks);
