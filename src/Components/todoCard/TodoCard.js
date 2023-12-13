@@ -22,10 +22,10 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
   };
 
   return (
-    <div
+    <Card
       className={`mt-1 shadow  ${
         theme === "DARK" && "dark-theme"
-      } border-black`}
+      } border-green`}
     >
       <Card.Body className="bg-success" key="success">
         <Card.Title>{task.name}</Card.Title>
@@ -53,7 +53,7 @@ function TodoCard({ task, onDeleteTask, onEditTask, onMarkAsCompleted }) {
           {translate("delete")}
         </Button>
       </Card.Body>
-    </div>
+    </Card>
   );
 }
 
