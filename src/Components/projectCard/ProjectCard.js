@@ -19,7 +19,7 @@ function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsComplete
   };
 
   const handleProjectClick = () => {
-      localStorage.setItem("projectID", JSON.stringify(project.id ));
+      localStorage.setItem("projectId", JSON.stringify(project.id ));
   };
 
   return (
