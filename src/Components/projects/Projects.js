@@ -11,7 +11,7 @@ function Projects({ onProjectClick }) {
   const translate = useTranslation()
 
   const [projects, setProjectsState] = useState([]);
-  const [editingproject, setEditingProject] = useState(null);
+  const [editingProject, setEditingProject] = useState(null);
   const [userID, setUserID] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]); 
   const [userRole, setUserRole] = useState("");
@@ -30,7 +30,7 @@ function Projects({ onProjectClick }) {
     if (storedProjects) {
       setProjects(JSON.parse(storedProjects));
     }
-    const storedUserID = localStorage.getItem("userID");
+    const storedUserID = Number(localStorage.getItem("userID"));
     if (storedUserID) {
       setUserID(storedUserID);
     }
@@ -42,7 +42,7 @@ function Projects({ onProjectClick }) {
 
   useEffect(() => {
     if (userRole === '"user"') {
-      const newFilteredProjects = projects.filter((project) => project.userID === Number(userID));
+      const newFilteredProjects = projects.filter((project) => project.userID === userID);
       setFilteredProjects(newFilteredProjects);
     } else {
       setFilteredProjects(projects);
@@ -53,7 +53,7 @@ function Projects({ onProjectClick }) {
     setProjects([...projects, newProject]);
   };
 
-  const deleteproject = (index) => {
+  const deleteProject = (index) => {
     const updatedProjects = [...projects];
     updatedProjects.splice(index, 1);
     setProjects(updatedProjects);
@@ -96,23 +96,25 @@ function Projects({ onProjectClick }) {
     <Container className="mt-4">
       <h1 className="text-center mb-4">{translate("list")}</h1>
 
-      <ProjectForm
-        onAddProject={addProject}
-        onDeleteCompletedproject={deleteCompletedProjects}
-      />
+      {userRole !== '"user"' && (
+        <ProjectForm
+          onAddProject={addProject}
+          onDeleteCompletedproject={deleteCompletedProjects}
+        />
+      )}
       <Row className="mt-4">
         {filteredProjects.map((project, index) => (
           <Col key={index} xs={12} md={6} lg={4} className="mb-3">
-            {editingproject === project ? (
+            {editingProject === project ? (
               <EditProject
                 project={project}
-                onUpdateproject={saveEditedProject}
+                onUpdateProject={saveEditedProject}
                 onCancel={cancelEdit}
               />
             ) : (
               <ProjectCard
                 project={project}
-                onDeleteproject={() => deleteproject(index)}
+                onDeleteProject={() => deleteProject(index)}
                 onEditProject={editProject}
                 onMarkAsCompleted={markprojectAsCompleted}
                 onProjectClick={() => onProjectClick(project.id)}
