@@ -1,4 +1,4 @@
-import React,{ useState }from "react";
+import React from "react";
 import { Card, Button, Form } from "react-bootstrap";
 
 import { TranslateContext } from "../../services/translationContext/translation.context";
@@ -28,6 +28,7 @@ function ProjectCard({ project, onDeleteProject, onEditProject, onMarkAsComplete
         <Card.Title>{project.name}</Card.Title>
         <Card.Text>{translate("start_date")}: {new Date(project.startDate).toLocaleDateString()}</Card.Text>
         <Card.Text>{translate("end_date")}: {new Date(project.endDate).toLocaleDateString()}</Card.Text>
+        <Card.Text>{translate("user_id")}: {project.userID}</Card.Text>
         <Form.Check
           type="checkbox"
           label={translate("completed")}

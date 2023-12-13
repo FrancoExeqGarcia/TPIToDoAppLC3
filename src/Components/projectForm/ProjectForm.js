@@ -11,11 +11,13 @@ function ProjectForm({onAddProject,onDeleteCompletedProject,editedProject,}) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [userID,setUserID]= useState(0);
 
   useEffect(() => {
     setProjectName(editedProject ? editedProject.name : "");
     setStartDate(editedProject ? editedProject.startDate : "");
     setEndDate(editedProject ? editedProject.endDate : "");
+    setUserID(editedProject ? editedProject.userID : 0);
   }, [editedProject]);
 
   const handleSubmit = (e) => {
@@ -35,6 +37,10 @@ function ProjectForm({onAddProject,onDeleteCompletedProject,editedProject,}) {
       setErrorMessage("Por favor, ingresa la fecha de fin.");
       return;
     }
+    if (!userID) {
+      setErrorMessage("Por favor, ingresa el user ID asociado.");
+      return;
+    }
 
     const startDateObj = new Date(startDate);
     const endDateObj = new Date(endDate);
@@ -45,7 +51,6 @@ function ProjectForm({onAddProject,onDeleteCompletedProject,editedProject,}) {
       );
       return;
     }
-    const userID = JSON.parse(localStorage.getItem("userID"));
 
     const newProject = {
       name: projectName,
@@ -106,6 +111,18 @@ function ProjectForm({onAddProject,onDeleteCompletedProject,editedProject,}) {
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
+            />
+          </Col>
+        </Form.Group> 
+        <Form.Group as={Row}>
+          <Form.Label column sm={4} className="text-right">
+            {translate("user_id")}
+          </Form.Label>
+          <Col sm={8}>
+            <Form.Control
+              type="number"
+              value={userID}
+              onChange={(e) => setUserID(Number(e.target.value))}
             />
           </Col>
         </Form.Group>
